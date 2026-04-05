@@ -26,6 +26,7 @@ enum DESIGN_MODE_ITEMS // The items of the Design Mode (you should add more item
 	ITM_SET_FLAG_CELL,
 	ITM_EXIT,
 	ITM_SWITCH_TO_PLAY_MODE,
+	ITM_ADD_ANTENNA,
 	
 	///TODO: Add more items names here
 
