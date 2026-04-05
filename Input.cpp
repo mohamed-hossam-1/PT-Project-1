@@ -1,7 +1,5 @@
 #include "Input.h"
-//moahmed hany is black
-
-//nooob
+//moahmed hany is white
 #include "Output.h"
 //======================================================================================//
 //								General Functions									    //
@@ -11,7 +9,7 @@ Input::Input(window* pW)
 {
 	pWind = pW; // point to the passed window
 }
-//mohamed
+//mohamed noob
 ////////////////////////////////////////////////////////////////////////////////////////// 
 
 void Input::GetPointClicked(int &x, int &y) const
