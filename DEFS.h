@@ -11,7 +11,7 @@ enum ActionType // The actions supported (add more as needed)
 	SET_FLAG_CELL,	// Set Flag on a Cell
 	EXIT,			// Exit Application
 	TO_PLAY_MODE,	// Go to Play Mode
-
+	ADD_ANTENNA,
 	///TODO: Add more action types of Design Mode
 
 	//  [2] Actions of Play Mode
