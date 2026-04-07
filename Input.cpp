@@ -85,14 +85,25 @@ ActionType Input::GetUserAction() const
 			case ITM_EXIT: return EXIT;
 			case ITM_SWITCH_TO_PLAY_MODE: return TO_PLAY_MODE;
 			case ITM_ADD_ANTENNA:return ADD_ANTENNA;
+			case ITM_ADD_BELT:return ADD_BELT;
+			case ITM_ADD_WATER:return ADD_WATER;
+			case ITM_ADD_DANGER_ZONE:return ADD_DANGER_ZONE;
+			case ITM_ADD_WORKSHOP:return ADD_WORKSHOP;
+			case ITM_ADD_ROTATING_GEAR:return ADD_ROTATING_GEAR;
+			case ITM_COPY_OBJECT:return COPY_OBJECT;
+			case ITM_CUT_OBJECT:return CUT_OBJECT;
+			case ITM_PASTE_OBJECT:return PASTE_OBJECT;
+			case ITM_DELETE_OBJECT:return DELETE_OBJECT;
+			case ITM_SAVE_GRID:return SAVE_GRID;
+			case ITM_LOAD_GRID:return LOAD_GRID;
 				///TODO: Add cases for the other items of Design Mode
 			
 
 
 
 			default: return EMPTY;	// A click on empty place in toolbar
-			}
 		}
+			}
 
 		// [2] User clicks on the grid area
 		if ( (y >= UI.ToolBarHeight) && (y < UI.height - UI.StatusBarHeight))
@@ -107,6 +118,27 @@ ActionType Input::GetUserAction() const
 	// ============ GUI in the Play mode ============
 	else	
 	{
+		if (y >= 0 && y < UI.ToolBarHeight) {
+
+			int clickedItemOrder = (x / UI.MenuItemWidth);
+
+			switch (clickedItemOrder) {
+			case ITM_EXECUTE_COMMANDS: return EXECUTE_COMMANDS;
+			case ITM_SELECT_COMMAND: return SELECT_COMMAND;
+			case ITM_NEW_GAME: return NEW_GAME;
+			case ITM_REBOOT_REPAIR: return REBOOT_REPAIR;
+			case ITM_SWITCH_TO_DESIGN_MODE :return TO_DESIGN_MODE;
+			case ITM_EXIT: return EXIT;
+			}
+
+		}
+
+		if ((y >= UI.ToolBarHeight) && (y < UI.height - UI.StatusBarHeight))
+		{
+			return GRID_AREA;
+		}
+		return STATUS;
+
 		///TODO:
 		// perform checks similar to Design mode checks above for the Play Mode
 		// and return the corresponding ActionType
