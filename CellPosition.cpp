@@ -29,15 +29,30 @@ CellPosition::CellPosition (int cellNum)
 bool CellPosition::SetVCell(int v) 
 {
 	///TODO: Implement this function as described in the .h file (don't forget the validation)
-
-	return false; // this line sould be changed with your implementation
+	// Mohamed hany added the following if condition which checks that the passed "v"
+	// is in the range of the grid vertical cells (from 0 to NumVerticalCells - 1).
+	if (v >= 0 && v < NumVerticalCells) 
+	{
+		vCell = v; 
+		return true;
+	}
+	else {
+		return false; // This means that it couldn't add a new vertical cell.
+	}
 }
 
 bool CellPosition::SetHCell(int h) 
 {
 	///TODO: Implement this function as described in the .h file (don't forget the validation)
-
-	return false; // this line sould be changed with your implementation
+	// Mohamed Hany added the following if condition for the same purpose as in SetVCell().
+	if (h >= 0 && h < NumHorizontalCells)
+	{
+		hCell = h;
+		return true;
+	}
+	else {
+		return false; // This means that it couldn't add a new Horizontal cell.
+	}
 }
 
 int CellPosition::VCell() const 
@@ -53,8 +68,14 @@ int CellPosition::HCell() const
 bool CellPosition::IsValidCell() const 
 {
 	///TODO: Implement this function as described in the .h file
-
-	return false; // this line sould be changed with your implementation
+	//Mohamed Hany added the following if condition which checks that both data members (vCells and hCells)
+	// are in the range of the grid.
+	if (vCell >= 0 && vCell < NumVerticalCells && hCell >= 0 && hCell < NumHorizontalCells) {
+		return true; // This means that the cell is valid.
+	}
+	else {
+		return false;
+	} 
 }
 
 int CellPosition::GetCellNum() const
@@ -69,17 +90,38 @@ int CellPosition::GetCellNumFromPosition(const CellPosition & cellPosition)
 	// this is a static function (do NOT need a calling object so CANNOT use the data members of the calling object, vCell&hCell)
 	// just define an integer that represents cell number and calculate it using the passed cellPosition then return it
 
-	///TODO: Implement this function as described in the .h file
+	///TODO: Implement this function as described in the .h file 
+	// Mohamed hany added this code:
+	// This function takes a pointer with data type CellPosition and calculates the cell Number
+	// using the data members of the passed cellPosition (vCell and hCell) and calculates the cell number.
+	int cellNumber;
 
-	return 0; // this line should be changed with your implementation
+	int verticalCell = cellPosition.VCell();
+	int horizontalCell = cellPosition.HCell();
+	if (verticalCell == 0)
+	{
+		cellNumber = horizontalCell + 1;
+	}
+	else
+		cellNumber = (horizontalCell + 1) + (verticalCell * 10 + 1);
+
+	return cellNumber; // this line should be changed with your implementation
 }
 
 CellPosition CellPosition::GetCellPositionFromNum(int cellNum)
 {
 	// this is a static function (do NOT need a calling object so CANNOT use the data members of the calling object, vCell&hCell)
-
+	// This function needs to be implemented
 	CellPosition position;
+	int verticalCell;
+	int horizontalCell;	
+	if (cellNum < 12) {
+		position.SetVCell(0);
+		position.SetHCell(cellNum - 1);
+	}
+	else {
 
+	}
 	/// TODO: Implement this function as described in the .h file
 
 	// Note: use the passed cellNum to set the vCell and hCell of the "position" variable declared inside the function

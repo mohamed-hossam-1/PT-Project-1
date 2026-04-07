@@ -56,6 +56,7 @@ public:
 															 // It is a static function (no need for a calling obj)
 
     ///TODO: IMPLEMENT THE FOLLOWING FUNCTION
+
 	/* Adds the passed "addedNum" to the "cellNum" of the current cell position based on the passed direction
 		and updates the data members (vCell and hCell) accordingly
 		for example, if cellNum = 11 (vCell = 4, hCell = 10) and the passed num = 2 and direction is up,
@@ -63,6 +64,7 @@ public:
 		(assuming NumVerticalCells = 5 and NumHorizontalCells = 11 )
 		Note: Make sure to make any necessary validations
 	*/
+
     void AddCellNum(int addedNum, Direction direction);
 
 };
