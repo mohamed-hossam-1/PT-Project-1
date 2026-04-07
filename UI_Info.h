@@ -27,7 +27,17 @@ enum DESIGN_MODE_ITEMS // The items of the Design Mode (you should add more item
 	ITM_EXIT,
 	ITM_SWITCH_TO_PLAY_MODE,
 	ITM_ADD_ANTENNA,
-	
+    ITM_ADD_BELT,           
+    ITM_ADD_WATER,          
+    ITM_ADD_DANGER_ZONE,    
+    ITM_ADD_WORKSHOP,       
+    ITM_ADD_ROTATING_GEAR,  
+    ITM_COPY_OBJECT,           
+    ITM_CUT_OBJECT,            
+    ITM_PASTE_OBJECT,          
+    ITM_DELETE_OBJECT,         
+    ITM_SAVE_GRID,          
+    ITM_LOAD_GRID,          
 	///TODO: Add more items names here
 
 	DESIGN_ITM_COUNT	// no. of items ==> This should be the last line in this enum
@@ -40,7 +50,10 @@ enum PLAY_MODE_ITEMS // The items of the Play Mode (you should add more items)
 
 	ITM_EXECUTE_COMMANDS,
 	ITM_SELECT_COMMAND,
+	ITM_NEW_GAME,
+	ITM_REBOOT_REPAIR,
 	ITM_SWITCH_TO_DESIGN_MODE,
+	ITM_EXIT,
 
 	///TODO: Add more items names here
 
