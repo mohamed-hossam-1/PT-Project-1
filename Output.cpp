@@ -1,7 +1,7 @@
 #include "Output.h"
 
 #include "Input.h"
-
+#include <string>
 #include <iostream>
 ////////////////////////////////////////////////////////////////////////////////////////// 
 
@@ -251,6 +251,7 @@ void Output::CreateDesignModeToolBar() const
 
 	// Draw menu item one image at a time
 	for(int i=0; i < DESIGN_ITM_COUNT; i++)
+		if (MenuItemImages[i].find("images") != string::npos)
 		pWind->DrawImage(MenuItemImages[i], i*UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
 
 
