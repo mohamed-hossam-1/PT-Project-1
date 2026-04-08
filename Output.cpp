@@ -160,45 +160,34 @@ void Output::DrawTriangle(int triangleCenterX, int triangleCenterY, int triangle
 
 	if (direction == UP)
 	{
-		x1 = triangleCenterX - triangleWidth / 2;
-		y1 = triangleCenterY - triangleHeight / 2;
-		x2 = triangleCenterX;
-		y2 = triangleCenterY + triangleHeight / 2;
-		x3 = triangleCenterX + triangleWidth / 2;
-		y3 = triangleCenterY - triangleHeight / 2;
+		x1 = triangleCenterX; y1 = triangleCenterY - triangleHeight / 2; // Tip
+		x2 = triangleCenterX - triangleWidth / 2; y2 = triangleCenterY + triangleHeight / 2; // Bottom Left
+		x3 = triangleCenterX + triangleWidth / 2; y3 = triangleCenterY + triangleHeight / 2; // Bottom Right
 	}
-	///TODO: Continue the implementation
-	if (direction == DOWN)
+	else if (direction == DOWN)
 	{
-		x1 = triangleCenterX - triangleWidth / 2;
-		y1 = triangleCenterY + triangleHeight / 2;
-		x2 = triangleCenterX;
-		y2 = triangleCenterY - triangleHeight / 2;
-		x3 = triangleCenterX + triangleWidth / 2;
-		y3 = triangleCenterY + triangleHeight / 2;
+		x1 = triangleCenterX; y1 = triangleCenterY + triangleHeight / 2; // Tip
+		x2 = triangleCenterX - triangleWidth / 2; y2 = triangleCenterY - triangleHeight / 2; // Top Left
+		x3 = triangleCenterX + triangleWidth / 2; y3 = triangleCenterY - triangleHeight / 2; // Top Right
 	}
-
-	if (direction == RIGHT)
+	else if (direction == RIGHT)
 	{
-		x1 = triangleCenterX - triangleHeight / 2;
-		y1 = triangleCenterY + triangleWidth / 2;
-		x2 = triangleCenterX + triangleHeight / 2;
-		y2 = triangleCenterY;
-		x3 = triangleCenterX - triangleHeight / 2;
-		y3 = triangleCenterY - triangleWidth / 2;
+		x1 = triangleCenterX + triangleHeight / 2; y1 = triangleCenterY;               // Tip
+		x2 = triangleCenterX - triangleHeight / 2; y2 = triangleCenterY - triangleWidth / 2; // Left Top
+		x3 = triangleCenterX - triangleHeight / 2; y3 = triangleCenterY + triangleWidth / 2; // Left Bottom
 	}
-
-	if (direction == LEFT)
+	else // LEFT
 	{
-		x1 = triangleCenterX + triangleHeight / 2;
-		y1 = triangleCenterY - triangleWidth / 2;
-		x2 = triangleCenterX - triangleHeight / 2;
-		y2 = triangleCenterY;
-		x3 = triangleCenterX + triangleHeight / 2;
-		y3 = triangleCenterY + triangleWidth / 2;
+		x1 = triangleCenterX - triangleHeight / 2; y1 = triangleCenterY;               // Tip
+		x2 = triangleCenterX + triangleHeight / 2; y2 = triangleCenterY - triangleWidth / 2; // Right Top	
+		x3 = triangleCenterX + triangleHeight / 2; y3 = triangleCenterY + triangleWidth / 2; // Right Bottom
 	}
+	pWind->SetPen(triangleColor, penWidth);
+	pWind->SetBrush(triangleColor);
+	pWind->DrawTriangle(x1, y1, x2, y2, x3, y3, style);
 
-	//All possible directions implemented by Abdulrahman Alkelany, now draw the triangle using the calculated coordinates 
+	//All possible directions implemented by Abdulrahman Alkelany, now draw the triangle using the calculated coordinates
+	// Note that the origin here is a the top left corner of the window, so the Y coordinate increases as you go down and decreases as you go up
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -213,6 +202,8 @@ void Output::DrawImageInCell(const CellPosition& cellPos, string image, int widt
 	int y = GetCellStartY(cellPos) + UI.CellHeight / 4;
 
 	// TODO: Complete the implementation of this function
+
+	
 
 }
 
