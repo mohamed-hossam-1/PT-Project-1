@@ -154,22 +154,57 @@ CellPosition CellPosition::GetCellPositionFromNum(int cellNum)
 }
 
 void CellPosition::AddCellNum(int addedNum, Direction direction)
-{
-	if (direction==UP&&addedNum<=VCell())
+{ // 2 
+
+	/*
+	switch (direction) {
+	case UP:
 	{
-		vCell += addedNum;
+
 	}
-	else if (direction == DOWN&&addedNum<=(4-VCell()))
-	{
-		vCell += addedNum;
 	}
-	else if (direction == RIGHT && addedNum <=(10-HCell() ))
+	*/
+
+	if (direction==UP)
 	{
-		hCell += addedNum;
+		for (int i = 0; i < addedNum; i++)
+		{
+			while (vCell != 0)
+			{
+				vCell -= 1;
+			}
+		}
+
 	}
-	else if (direction == LEFT && addedNum <=HCell() )
+	else if (direction == DOWN)
 	{
-		hCell += addedNum;
+		for (int i = 0; i < addedNum; i++)
+		{
+			while (vCell != 4)
+			{
+				vCell += 1;
+			}
+		}
+	}
+	else if (direction == RIGHT)
+	{
+		for (int i = 0; i < addedNum; i++)
+		{
+			while (hCell != 11)
+			{
+				hCell += 1;
+			}
+		}
+	}
+	else if (direction == LEFT )
+	{
+		for (int i = 0; i < addedNum; i++)
+		{
+			while (hCell != 0)
+			{
+				hCell -= 1;
+			}
+		}
 	}
 
 
