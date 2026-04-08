@@ -124,8 +124,6 @@ CellPosition CellPosition::GetCellPositionFromNum(int cellNum)
 	// this is a static function (do NOT need a calling object so CANNOT use the data members of the calling object, vCell&hCell)
 	// This function needs to be implemented
 	CellPosition position;
-	int verticalCell;
-	int horizontalCell;	
 	if (cellNum > 44) {
 		position.SetVCell(0);
 		position.SetHCell(cellNum - 45);
@@ -157,9 +155,26 @@ CellPosition CellPosition::GetCellPositionFromNum(int cellNum)
 
 void CellPosition::AddCellNum(int addedNum, Direction direction)
 {
-	
-	/// TODO: Implement this function as described in the .h file
+	if (direction==UP&&addedNum<=VCell())
+	{
+		vCell += addedNum;
+	}
+	else if (direction == DOWN&&addedNum<=(4-VCell()))
+	{
+		vCell += addedNum;
+	}
+	else if (direction == RIGHT && addedNum <=(10-HCell() ))
+	{
+		hCell += addedNum;
+	}
+	else if (direction == LEFT && addedNum <=HCell() )
+	{
+		hCell += addedNum;
+	}
 
+
+	/// TODO: Implement this function as described in the .h file
+	//mohamed hossameldin
 
 	// Note: this function updates the data members (vCell and hCell) of the calling object
 
