@@ -19,7 +19,7 @@ Output::Output()
 	UI.MenuItemWidth = 55;
 
 	UI.width = 1210; // make it divisible by NumHorizontalCells
-	UI.height = 610; 
+	UI.height = 627; 
 	UI.wx = 5;
 	UI.wy = 5;
 
@@ -161,14 +161,44 @@ void Output::DrawTriangle(int triangleCenterX, int triangleCenterY, int triangle
 	if (direction == UP)
 	{
 		x1 = triangleCenterX - triangleWidth / 2;
-		y1 = triangleCenterY + triangleHeight / 2;
-		x2 = triangleCenterX + triangleWidth / 2;
+		y1 = triangleCenterY - triangleHeight / 2;
+		x2 = triangleCenterX;
 		y2 = triangleCenterY + triangleHeight / 2;
-		x3 = triangleCenterX;
+		x3 = triangleCenterX + triangleWidth / 2;
 		y3 = triangleCenterY - triangleHeight / 2;
 	}
 	///TODO: Continue the implementation
-	
+	if (direction == DOWN)
+	{
+		x1 = triangleCenterX - triangleWidth / 2;
+		y1 = triangleCenterY + triangleHeight / 2;
+		x2 = triangleCenterX;
+		y2 = triangleCenterY - triangleHeight / 2;
+		x3 = triangleCenterX + triangleWidth / 2;
+		y3 = triangleCenterY + triangleHeight / 2;
+	}
+
+	if (direction == RIGHT)
+	{
+		x1 = triangleCenterX - triangleHeight / 2;
+		y1 = triangleCenterY + triangleWidth / 2;
+		x2 = triangleCenterX + triangleHeight / 2;
+		y2 = triangleCenterY;
+		x3 = triangleCenterX - triangleHeight / 2;
+		y3 = triangleCenterY - triangleWidth / 2;
+	}
+
+	if (direction == LEFT)
+	{
+		x1 = triangleCenterX + triangleHeight / 2;
+		y1 = triangleCenterY - triangleWidth / 2;
+		x2 = triangleCenterX - triangleHeight / 2;
+		y2 = triangleCenterY;
+		x3 = triangleCenterX + triangleHeight / 2;
+		y3 = triangleCenterY + triangleWidth / 2;
+	}
+
+	//All possible directions implemented by Abdulrahman Alkelany, now draw the triangle using the calculated coordinates 
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
