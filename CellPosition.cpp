@@ -100,10 +100,21 @@ int CellPosition::GetCellNumFromPosition(const CellPosition & cellPosition)
 	int horizontalCell = cellPosition.HCell();
 	if (verticalCell == 0)
 	{
-		cellNumber = horizontalCell + 1;
+		cellNumber = 45 + horizontalCell;
 	}
-	else
-		cellNumber = (horizontalCell + 1) + (verticalCell * 10 + 1);
+	else if (verticalCell == 1) {
+		cellNumber = 34 + horizontalCell;
+
+	}
+	else if (verticalCell == 2) {
+		cellNumber = 23 + horizontalCell;
+	}
+	else if (verticalCell == 3) {
+		cellNumber = 12 + horizontalCell;
+	}
+	else if (verticalCell == 4) {
+		cellNumber = 1 + horizontalCell;
+	}
 
 	return cellNumber; // this line should be changed with your implementation
 }
@@ -115,12 +126,25 @@ CellPosition CellPosition::GetCellPositionFromNum(int cellNum)
 	CellPosition position;
 	int verticalCell;
 	int horizontalCell;	
-	if (cellNum < 12) {
+	if (cellNum > 44) {
 		position.SetVCell(0);
-		position.SetHCell(cellNum - 1);
+		position.SetHCell(cellNum - 45);
+	}
+	else if(cellNum > 33 && cellNum < 45){
+		position.SetVCell(1);
+		position.SetHCell(cellNum - 34);
+	}
+	else if (cellNum > 22 && cellNum < 34) {
+		position.SetVCell(2);
+		position.SetHCell(cellNum - 23);
+	}
+	else if (cellNum > 11 && cellNum < 23) {
+		position.SetVCell(3);
+		position.SetHCell(cellNum - 12);
 	}
 	else {
-
+		position.SetVCell(4);
+		position.SetHCell(cellNum - 1);
 	}
 	/// TODO: Implement this function as described in the .h file
 
