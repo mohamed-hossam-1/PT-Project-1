@@ -9,7 +9,7 @@ Input::Input(window* pW)
 {
 	pWind = pW; // point to the passed window
 }
-//mohamed noob
+
 ////////////////////////////////////////////////////////////////////////////////////////// 
 
 void Input::GetPointClicked(int &x, int &y) const
@@ -43,18 +43,21 @@ string Input::GetString(Output *pO) const
 
 int Input::GetInteger(Output *pO) const 
 {
+	int integer;
+
+	integer = stoi(GetString(pO));
+	return integer;
+}
 
 	///TODO: implement the GetInteger function as described in Input.h file 
 	//       using function GetString() defined above and function stoi()
 
 	
 
-
-
 	// Note: stoi(s) converts string s into its equivalent integer (for example, "55" is converted to 55)
 
-	return 0; // this line should be changed with your implementation
-}
+	 // this line should be changed with your implementation
+
 
 //======================================================================================//
 //								Game  Functions									        //
@@ -165,11 +168,12 @@ CellPosition Input::GetCellClicked() const
 	{
 		if ( y >= UI.ToolBarHeight && y <= (UI.height - UI.StatusBarHeight))
 		{
+			cellPos.SetHCell(x/UI.CellWidth);
+			cellPos.SetVCell(y/UI.CellHeight);
+
+
 			///TODO: SetHCell and SetVCell of the object cellPost appropriately
 			//       using the coordinates x, y and the appropriate variables of the UI_Info Object (UI)
-			
-
-
 		}
 	}
 
