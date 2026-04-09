@@ -283,8 +283,20 @@ void Output::CreateDesignModeToolBar() const
 	
 	///TODO: Change the path of the images as needed
 	MenuItemImages[ITM_SET_FLAG_CELL] = "images\\Menu_Dice.jpg";
-	
-	
+	MenuItemImages[ITM_ADD_ANTENNA] = "images\\anttena.jpg";
+
+	/*MenuItemImages[ITM_ADD_BELT] = "images\\";
+	MenuItemImages[ITM_ADD_WATER] = "images\\";
+	MenuItemImages[ITM_EXIT] = "images\\";
+	MenuItemImages[ITM_ADD_DANGER_ZONE] = "images\\";
+	MenuItemImages[ITM_ADD_WORKSHOP] = "images\\";
+	MenuItemImages[ITM_ADD_ROTATING_GEAR] = "images\\";
+	MenuItemImages[ITM_COPY_OBJECT] = "images\\";
+	MenuItemImages[ITM_CUT_OBJECT] = "images\\";
+	MenuItemImages[ITM_PASTE_OBJECT] = "images\\";
+	MenuItemImages[ITM_DELETE_OBJECT] = "images\\";
+	MenuItemImages[ITM_SAVE_GRID] = "images\\";
+	MenuItemImages[ITM_LOAD_GRID] = "images\\";*/
 	///TODO: Prepare images for each menu item and add it to the list
 
 
@@ -319,6 +331,15 @@ void Output::CreatePlayModeToolBar() const
 	MenuItemImages[ITM_EXECUTE_COMMANDS] = "images\\Menu_Dice.jpg";
 	MenuItemImages[ITM_SELECT_COMMAND] = "images\\Menu_Dice.jpg";
 	MenuItemImages[ITM_MOVE_FORWARD_ONE_STEP] = "images\\Menu_MoveForward.jpg";
+	/*MenuItemImages[ITM_NEW_GAME] = "images\\";
+	MenuItemImages[ITM_SWITCH_TO_DESIGN_MODE] = "images\\";
+	MenuItemImages[ITM_REBOOT_REPAIR] = "images\\";*/
+
+
+
+
+
+
 
 	///TODO: Prepare images for each menu item and add it to the list
 
