@@ -1,5 +1,4 @@
 #include "Output.h"
-
 #include "Input.h"
 #include <string>
 #include <iostream>
@@ -196,6 +195,12 @@ void Output::DrawTriangle(int triangleCenterX, int triangleCenterY, int triangle
 		y3 = triangleCenterY + triangleWidth / 2; // Right Bottom
 	}
 	
+	pWind->SetPen(triangleColor, penWidth);
+	if (style == FILLED)
+		pWind->SetBrush(triangleColor);
+
+	pWind->DrawTriangle(x1, y1, x2, y2, x3, y3, style);
+
 
 	//All possible directions implemented by Abdulrahman Alkelany, now draw the triangle using the calculated coordinates
 	// Note that the origin here is a the top left corner of the window, so the Y coordinate increases as you go down and decreases as you go up
@@ -235,7 +240,7 @@ void Output::ClearStatusBar() const
 void Output::ClearCommandsBar() const
 {
 	// Clear drawing a rectangle filled with command bar background color
-	pWind->SetPen(UI.CommandBarColor, 1);
+	pWind->SetPen(UI.CommandBarColor, 1);				
 	pWind->SetBrush(UI.CommandBarColor);
 	pWind->DrawRectangle(0, UI.height - UI.StatusBarHeight - UI.CommandsBarHeight, UI.width, UI.height - UI.StatusBarHeight);
 }
@@ -499,8 +504,9 @@ void Output::DrawCell(const CellPosition & cellPos, color cellColor) const
 
 void Output::DrawPlayer(const CellPosition & cellPos, int playerNum, color playerColor, Direction direction) const
 {
+	int x1, y1, x2, y2, x3, y3; // coordinates of the 3 vertices of the triangle representing the player
 	// TODO: Validate the cell position and the playerNum, if not valid return
-	if (!cellPos.IsValidCell() || playerNum < 0 || playerNum > 1)
+	if (!cellPos.IsValidCell() || playerNum < 0 || playerNum > 1 || (direction != UP && direction != DOWN && direction != LEFT && direction != RIGHT))
 		return;
 
 	// Get the X & Y coordinates of the start point of the cell (its upper left corner)
@@ -508,7 +514,7 @@ void Output::DrawPlayer(const CellPosition & cellPos, int playerNum, color playe
 	int cellStartY = GetCellStartY(cellPos);
 
 	// Calculate the Radius of the Player's Triangle
-	int radius = UI.CellWidth / 14; // proportional to cell width
+	int radius = UI.CellWidth / 10; // proportional to cell width
 
 	// Calculate the horizontal space before drawing players triangles (space from the left border of the cell)
 	int ySpace = UI.CellHeight / 6; // proportional to cell height
@@ -530,7 +536,48 @@ void Output::DrawPlayer(const CellPosition & cellPos, int playerNum, color playe
 	// TODO: Draw the player triangle in center(x,y) and filled with the playerColor passed to the function
 	pWind->SetPen(playerColor, 1);
 	pWind->SetBrush(playerColor);
-	pWind->DrawTriangle(x, y, 3, 4, 5, 6, FILLED);
+
+	switch (direction)
+			{	
+			case DOWN:
+				x1 = x;
+				y1 = y + radius / 2; // Tip
+				x2 = x - radius / 2;
+				y2 = y - radius / 2; // Top Left
+				x3 = x + radius / 2;
+				y3 = y - radius / 2; // Top Right
+				break;
+			case RIGHT:
+				x1 = x + radius / 2;
+				y1 = y;  // Tip
+				x2 = x - radius / 2;
+				y2 = y - radius / 2; // Left Top
+				x3 = x - radius / 2;
+				y3 = y + radius / 2; // Left Bottom
+				break;
+			case LEFT:
+				x1 = x - radius / 2;
+				y1 = y; // Tip
+				x2 = x + radius / 2;
+				y2 = y - radius / 2; // Right Top	
+				x3 = x + radius / 2;
+				y3 = y + radius / 2; // Right Bottom
+				break;
+			default:
+				x1 = x;
+				y1 = y - radius / 2; // Tip
+				x2 = x - radius / 2;
+				y2 = y + radius / 2; // Bottom Left
+				x3 = x + radius / 2;
+				y3 = y + radius / 2; // Bottom Right
+				break;
+	}
+
+	//DrawPlayer integrated with DrawTriangle function, so we can reuse the code of calculating the vertices of the triangle 
+	// based on the direction and the center (x,y) and radius (which is used as height and width of the triangle)
+	// Note: The radius is used as the height and width of the triangle for simplicity, you can adjust it as needed
+	// Note: The center (x,y) is calculated based on the cell position and player number to avoid overlapping with belts and other players done by Abdulrahman Alkelany
+	pWind->DrawTriangle(x1, y1, x2, y2, x3, y3,FILLED);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
