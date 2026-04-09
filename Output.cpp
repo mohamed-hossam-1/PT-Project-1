@@ -214,8 +214,8 @@ void Output::DrawImageInCell(const CellPosition& cellPos, string image, int widt
 	if (!cellPos.IsValidCell())
 		return;
 
-	int x = GetCellStartX(cellPos) + UI.CellWidth / 4;
-	int y = GetCellStartY(cellPos) + UI.CellHeight / 4;
+	int x = GetCellStartX(cellPos) + UI.CellWidth / 2;
+	int y = GetCellStartY(cellPos) + UI.CellHeight / 2;
 
 	// TODO: Complete the implementation of this function
 
@@ -271,6 +271,7 @@ void Output::CreateDesignModeToolBar() const
 
 	// You can draw the tool bar icons in any way you want.
 	// Below is one possible way
+
 
 	// First prepare List of images for each menu item
 	// To control the order of these images in the menu, 
