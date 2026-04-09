@@ -196,7 +196,11 @@ void Output::DrawTriangle(int triangleCenterX, int triangleCenterY, int triangle
 		y3 = triangleCenterY + triangleWidth / 2; // Right Bottom
 	}
 	
-
+	pWind->SetPen(triangleColor, penWidth);
+	if (style == FILLED) 
+		pWind->SetBrush(triangleColor);
+	pWind->DrawTriangle(x1,y1,x2,y2,x3,y3,style)
+		
 	//All possible directions implemented by Abdulrahman Alkelany, now draw the triangle using the calculated coordinates
 	// Note that the origin here is a the top left corner of the window, so the Y coordinate increases as you go down and decreases as you go up
 }
