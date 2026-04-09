@@ -121,7 +121,7 @@ int main()
 	CellPosition player_15(2, 18);
 	CellPosition player_99(2, 5);
 
-
+	
 	///TODO: Call Function DrawPlayer of Class Ouput Multiple Times
 	///       to draw the following players:
 	///       playerNum (0) with color (PlayerColors[0] defined in UI object) 
@@ -141,7 +141,16 @@ int main()
 	///       playerNum (-1) with color (PlayerColors[1] defined in UI object) 
 	///			in cell position (player_99 declared above) pointing left--> Invalid
 
-	
+	pOut->DrawPlayer(player_1, 0, UI.PlayerColors[0], RIGHT);
+	pOut->DrawPlayer(player_1, 1, UI.PlayerColors[1], UP);
+	pOut->DrawPlayer(player_1, 2, UI.PlayerColors[2], DOWN); // Invalid
+	pOut->DrawPlayer(player_1, 3, UI.PlayerColors[3], LEFT); // Invalid
+	pOut->DrawPlayer(player_15, 0, UI.PlayerColors[0], LEFT); // Invalid
+	pOut->DrawPlayer(player_99, 1, UI.PlayerColors[1], UP);
+	pOut->DrawPlayer(player_99, 5, UI.PlayerColors[1], DOWN); // Invalid
+	pOut->DrawPlayer(player_99, -1, UI.PlayerColors[1], LEFT); // Invalid
+
+
 	pOut->PrintMessage("FINISHED - Drawing (Players) Test,  Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
 

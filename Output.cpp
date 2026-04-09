@@ -1,7 +1,7 @@
 #include "Output.h"
 
 #include "Input.h"
-
+#include <string>
 #include <iostream>
 ////////////////////////////////////////////////////////////////////////////////////////// 
 
@@ -19,7 +19,7 @@ Output::Output()
 	UI.MenuItemWidth = 55;
 
 	UI.width = 1210; // make it divisible by NumHorizontalCells
-	UI.height = 610; 
+	UI.height = 627; 
 	UI.wx = 5;
 	UI.wy = 5;
 
@@ -111,7 +111,7 @@ Input* Output::CreateInput() const
 
 int Output::GetCellStartX(const CellPosition & cellPos) const
 {
-	///TODO: implement the following function as described in Output.h file
+	//TODO: implement the following function as described in Output.h file
 	
 	if (cellPos.IsValidCell())
 	{
@@ -139,7 +139,8 @@ int Output::GetCellStartY(const CellPosition & cellPos) const
 		return 0;
 	}
 }
-
+//Start functions are valid and ready to be used in other functions, they calculate the starting X and Y coordinates 
+// of the upper left corner of a cell based on its position (vCell and hCell) and the dimensions of the cells and toolbar.
 //////////////////////////////////////////////////////////////////////////////////////////
 
 void Output::ClearToolBar() const
@@ -160,15 +161,44 @@ void Output::DrawTriangle(int triangleCenterX, int triangleCenterY, int triangle
 
 	if (direction == UP)
 	{
-		x1 = triangleCenterX - triangleWidth / 2;
-		y1 = triangleCenterY + triangleHeight / 2;
-		x2 = triangleCenterX + triangleWidth / 2;
-		y2 = triangleCenterY + triangleHeight / 2;
-		x3 = triangleCenterX;
-		y3 = triangleCenterY - triangleHeight / 2;
+		x1 = triangleCenterX; 
+		y1 = triangleCenterY - triangleHeight / 2; // Tip
+		x2 = triangleCenterX - triangleWidth / 2; 
+		y2 = triangleCenterY + triangleHeight / 2; // Bottom Left
+		x3 = triangleCenterX + triangleWidth / 2; 
+		y3 = triangleCenterY + triangleHeight / 2; // Bottom Right
 	}
-	///TODO: Continue the implementation
+	else if (direction == DOWN)
+	{
+		x1 = triangleCenterX; 
+		y1 = triangleCenterY + triangleHeight / 2; // Tip
+		x2 = triangleCenterX - triangleWidth / 2; 
+		y2 = triangleCenterY - triangleHeight / 2; // Top Left
+		x3 = triangleCenterX + triangleWidth / 2; 
+		y3 = triangleCenterY - triangleHeight / 2; // Top Right
+	}
+	else if (direction == RIGHT)
+	{
+		x1 = triangleCenterX + triangleHeight / 2; 
+		y1 = triangleCenterY;  // Tip
+		x2 = triangleCenterX - triangleHeight / 2; 
+		y2 = triangleCenterY - triangleWidth / 2; // Left Top
+		x3 = triangleCenterX - triangleHeight / 2; 
+		y3 = triangleCenterY + triangleWidth / 2; // Left Bottom
+	}
+	else // LEFT
+	{
+		x1 = triangleCenterX - triangleHeight / 2; 
+		y1 = triangleCenterY; // Tip
+		x2 = triangleCenterX + triangleHeight / 2; 
+		y2 = triangleCenterY - triangleWidth / 2; // Right Top	
+		x3 = triangleCenterX + triangleHeight / 2; 
+		y3 = triangleCenterY + triangleWidth / 2; // Right Bottom
+	}
 	
+
+	//All possible directions implemented by Abdulrahman Alkelany, now draw the triangle using the calculated coordinates
+	// Note that the origin here is a the top left corner of the window, so the Y coordinate increases as you go down and decreases as you go up
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -183,6 +213,10 @@ void Output::DrawImageInCell(const CellPosition& cellPos, string image, int widt
 	int y = GetCellStartY(cellPos) + UI.CellHeight / 4;
 
 	// TODO: Complete the implementation of this function
+
+	pWind->SetPen(UI.CellColor, 1);
+	pWind->SetBrush(UI.CellColor);
+	pWind->DrawImage(image, x, y, width, height);
 
 }
 
@@ -251,6 +285,7 @@ void Output::CreateDesignModeToolBar() const
 
 	// Draw menu item one image at a time
 	for(int i=0; i < DESIGN_ITM_COUNT; i++)
+		if (MenuItemImages[i].find("images") != string::npos)
 		pWind->DrawImage(MenuItemImages[i], i*UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
 
 
@@ -277,6 +312,7 @@ void Output::CreatePlayModeToolBar() const
 	///TODO: Change the path of the images as needed
 	MenuItemImages[ITM_EXECUTE_COMMANDS] = "images\\Menu_Dice.jpg";
 	MenuItemImages[ITM_SELECT_COMMAND] = "images\\Menu_Dice.jpg";
+	MenuItemImages[ITM_MOVE_FORWARD_ONE_STEP] = "images\\Menu_MoveForward.jpg";
 
 	///TODO: Prepare images for each menu item and add it to the list
 
@@ -464,7 +500,8 @@ void Output::DrawCell(const CellPosition & cellPos, color cellColor) const
 void Output::DrawPlayer(const CellPosition & cellPos, int playerNum, color playerColor, Direction direction) const
 {
 	// TODO: Validate the cell position and the playerNum, if not valid return
-	
+	if (!cellPos.IsValidCell() || playerNum < 0 || playerNum > 1)
+		return;
 
 	// Get the X & Y coordinates of the start point of the cell (its upper left corner)
 	int cellStartX = GetCellStartX(cellPos);
@@ -491,7 +528,9 @@ void Output::DrawPlayer(const CellPosition & cellPos, int playerNum, color playe
 														// for not overlapping with belts
 
 	// TODO: Draw the player triangle in center(x,y) and filled with the playerColor passed to the function
-	
+	pWind->SetPen(playerColor, 1);
+	pWind->SetBrush(playerColor);
+	pWind->DrawTriangle(x, y, 3, 4, 5, 6, FILLED);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
