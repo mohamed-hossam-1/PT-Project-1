@@ -98,6 +98,13 @@ int CellPosition::GetCellNumFromPosition(const CellPosition & cellPosition)
 
 	int verticalCell = cellPosition.VCell();
 	int horizontalCell = cellPosition.HCell();
+	/*
+	switch (verticalCell)
+	{
+	case 0:
+
+	}
+	*/
 	if (verticalCell == 0)
 	{
 		cellNumber = 45 + horizontalCell;
