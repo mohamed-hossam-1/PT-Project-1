@@ -330,7 +330,14 @@ void Output::CreatePlayModeToolBar() const
 	///TODO: Change the path of the images as needed
 	MenuItemImages[ITM_EXECUTE_COMMANDS] = "images\\Menu_Dice.jpg";
 	MenuItemImages[ITM_SELECT_COMMAND] = "images\\Menu_Dice.jpg";
-	MenuItemImages[ITM_MOVE_FORWARD_ONE_STEP] = "images\\Menu_MoveForward.jpg";
+	MenuItemImages[ITM_MOVE_FORWARD_ONE_STEP] = "images\\MoveForward1Step.jpg";
+	MenuItemImages[ITM_MOVE_FORWARD_TWO_STEPS] = "images\\MoveForward2Steps.jpg";
+	MenuItemImages[ITM_MOVE_FORWARD_THREE_STEPS] = "images\\MoveForward3Steps.jpg";
+	MenuItemImages[ITM_MOVE_BACKWARD_ONE_STEP] = "images\\MoveBackward1Step.jpg";
+	MenuItemImages[ITM_MOVE_BACKWARD_TWO_STEPS] = "images\\MoveBackward2Steps.jpg";
+	MenuItemImages[ITM_MOVE_BACKWARD_THREE_STEPS] = "images\\MoveBackward3Steps.jpg";
+	MenuItemImages[ITM_TURN_CLOCKWISE] = "images\\ClockwiseRotation.jpg";
+	MenuItemImages[ITM_TURN_COUNTERCLOCKWISE] = "images\\CounterClockwiseRotation.jpg";
 	/*MenuItemImages[ITM_NEW_GAME] = "images\\";
 	MenuItemImages[ITM_SWITCH_TO_DESIGN_MODE] = "images\\";
 	MenuItemImages[ITM_REBOOT_REPAIR] = "images\\";*/
