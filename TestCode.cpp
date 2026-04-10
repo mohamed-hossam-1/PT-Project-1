@@ -46,6 +46,14 @@ int main()
 
 	///TODO: Draw the command bar with only 4 available commands and 4 empty slots for saved commands
 	
+	
+	for (int i = 0; i < 4; i++)
+		savedCommands[i] = NO_COMMAND;
+	for (int i = 0; i < 4; i++)
+		availableCommands[i] = MOVE_FORWARD_ONE_STEP;
+	pOut->CreateCommandsBar(savedCommands, 4, availableCommands, 4);
+	pIn->GetPointClicked(x, y);	//Wait for any click
+
 
 	pOut->PrintMessage("1.1.2- Finished Testing the Command bar in the Game mode, Click to continue");
 
@@ -56,6 +64,17 @@ int main()
 	/// 	but the first saved command will be MOVE_FORWARD_ONE_STEP
 	///		and the first available command will be NO_COMMAND
 
+
+	for (int i = 0; i < 5; i++)
+		savedCommands[i] = NO_COMMAND;
+	availableCommands[0] = NO_COMMAND;
+	for (int i = 1; i < 7; i++)
+		availableCommands[i] = MOVE_FORWARD_ONE_STEP;
+	for (int i = 0; i < 5; i++)
+		savedCommands[i] = availableCommands[i+1];
+
+	pOut->CreateCommandsBar(savedCommands, 5, availableCommands, 7);
+	pIn->GetPointClicked(x, y);	//Wait for any click
 	
 	pOut->PrintMessage("1.1.3- Finished Testing the Command bar in the Game mode, Click to continue");
 
@@ -65,6 +84,18 @@ int main()
 	///TODO: Draw the command bar with 5 saved commands and 6 available commands,
 	/// 	but the first saved command will be MOVE_FORWARD_TWO_STEPS
 	///		and the first available command will be NO_COMMAND as previous test
+	
+
+
+	for (int i = 0; i < 5; i++)
+		savedCommands[i] = NO_COMMAND;
+	for (int i = 1; i < 6; i++)
+		availableCommands[i] = MOVE_FORWARD_TWO_STEPS;
+	for (int i = 0; i < 5; i++)
+		savedCommands[i] = availableCommands[i + 1];
+
+	pOut->CreateCommandsBar(savedCommands, 5, availableCommands, 6);
+	pIn->GetPointClicked(x, y);	//Wait for any click
 	
 
 	pOut->PrintMessage("1.1.4- Finished Testing the Command bar in the Game mode, Click to continue");
