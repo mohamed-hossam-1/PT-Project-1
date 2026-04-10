@@ -110,6 +110,7 @@ ActionType Input::GetUserAction() const
 		// [2] User clicks on the grid area
 		if ( (y >= UI.ToolBarHeight) && (y < UI.height - UI.StatusBarHeight))
 		{
+
 			return GRID_AREA;	
 		}
 
@@ -139,6 +140,7 @@ ActionType Input::GetUserAction() const
 		{
 			return GRID_AREA;
 		}
+		
 		return STATUS;
 
 		///TODO:
@@ -165,7 +167,8 @@ CellPosition Input::GetCellClicked() const
 
 	if ( UI.InterfaceMode == MODE_DESIGN )	
 	{
-		if ( y >= UI.ToolBarHeight && y <= (UI.height - UI.StatusBarHeight))
+		// I changed y <= (UI.height - UI.StatusBarHeight) to y <= (UI.height - UI.StatusBarHeight - UI.CommandsBarHeight) because the commands bar is only shown in play mode and not in design mode, so the grid area in design mode extends until the status bar, while in play mode it extends until the commands bar
+		if ( y >= UI.ToolBarHeight && y <= (UI.StatusBarHeight - UI.StatusBarHeight))
 		{
 			cellPos.SetHCell(x/UI.CellWidth);
 			cellPos.SetVCell(y/UI.CellHeight);
@@ -174,6 +177,11 @@ CellPosition Input::GetCellClicked() const
 			///TODO: SetHCell and SetVCell of the object cellPost appropriately
 			//       using the coordinates x, y and the appropriate variables of the UI_Info Object (UI)
 		}
+		else {
+			cellPos.SetHCell(-1);
+			cellPos.SetVCell(-1);	
+		}
+
 	}
 
 	return cellPos;

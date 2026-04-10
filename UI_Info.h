@@ -55,7 +55,9 @@ enum PLAY_MODE_ITEMS // The items of the Play Mode (you should add more items)
 	ITM_SWITCH_TO_DESIGN_MODE,
 	ITM_MOVE_FORWARD_ONE_STEP,
 
+
 	///TODO: Add more items names here
+
 
 	PLAY_ITM_COUNT		// no. of items ==> This should be the last line in this enum
 };
