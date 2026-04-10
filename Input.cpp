@@ -44,7 +44,6 @@ string Input::GetString(Output *pO) const
 int Input::GetInteger(Output *pO) const 
 {
 	int integer;
-
 	integer = stoi(GetString(pO));
 	return integer;
 }
@@ -100,7 +99,7 @@ ActionType Input::GetUserAction() const
 			case ITM_SAVE_GRID:return SAVE_GRID;
 			case ITM_LOAD_GRID:return LOAD_GRID;
 				///TODO: Add cases for the other items of Design Mode
-			
+			//mohamed hossam
 
 
 
