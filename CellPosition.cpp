@@ -98,13 +98,28 @@ int CellPosition::GetCellNumFromPosition(const CellPosition & cellPosition)
 
 	int verticalCell = cellPosition.VCell();
 	int horizontalCell = cellPosition.HCell();
-	/*
+	
 	switch (verticalCell)
 	{
 	case 0:
+		cellNumber = 45 + horizontalCell;
+		break;
+	case1:
+		cellNumber = 34 + horizontalCell;
+		break;
+	case2:
+		cellNumber = 23 + horizontalCell;
+		break;
+	case3:
+		cellNumber = 12 + horizontalCell;
+		break;
+	default:
+		cellNumber = 1 + horizontalCell;
+		break;
 
 	}
-	*/
+	
+	/*
 	if (verticalCell == 0)
 	{
 		cellNumber = 45 + horizontalCell;
@@ -122,6 +137,7 @@ int CellPosition::GetCellNumFromPosition(const CellPosition & cellPosition)
 	else if (verticalCell == 4) {
 		cellNumber = 1 + horizontalCell;
 	}
+	*/
 
 	return cellNumber; // this line should be changed with your implementation
 }
