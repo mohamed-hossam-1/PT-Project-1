@@ -54,8 +54,16 @@ enum PLAY_MODE_ITEMS // The items of the Play Mode (you should add more items)
 	ITM_REBOOT_REPAIR,
 	ITM_SWITCH_TO_DESIGN_MODE,
 	ITM_MOVE_FORWARD_ONE_STEP,
+	ITM_MOVE_FORWARD_TWO_STEPS,
+	ITM_MOVE_FORWARD_THREE_STEPS,
+	ITM_MOVE_BACKWARD_ONE_STEP,
+	ITM_MOVE_BACKWARD_TWO_STEPS,
+	ITM_MOVE_BACKWARD_THREE_STEPS,
+	ITM_TURN_CLOCKWISE,
+	ITM_TURN_COUNTERCLOCKWISE,
 
 	///TODO: Add more items names here
+
 
 	PLAY_ITM_COUNT		// no. of items ==> This should be the last line in this enum
 };

@@ -330,7 +330,14 @@ void Output::CreatePlayModeToolBar() const
 	///TODO: Change the path of the images as needed
 	MenuItemImages[ITM_EXECUTE_COMMANDS] = "images\\Menu_Dice.jpg";
 	MenuItemImages[ITM_SELECT_COMMAND] = "images\\Menu_Dice.jpg";
-	MenuItemImages[ITM_MOVE_FORWARD_ONE_STEP] = "images\\Menu_MoveForward.jpg";
+	MenuItemImages[ITM_MOVE_FORWARD_ONE_STEP] = "images\\Move_Forward_One_Step.jpg";
+	MenuItemImages[ITM_MOVE_FORWARD_TWO_STEPS] = "images\\Move_Forward_Two_Steps.jpg";
+	MenuItemImages[ITM_MOVE_FORWARD_THREE_STEPS] = "images\\Move_Forward_Three_Steps.jpg";
+	MenuItemImages[ITM_MOVE_BACKWARD_ONE_STEP] = "images\\Move_Backward_One_Step.jpg";
+	MenuItemImages[ITM_MOVE_BACKWARD_TWO_STEPS] = "images\\Move_Backward_Two_Steps.jpg";
+	MenuItemImages[ITM_MOVE_BACKWARD_THREE_STEPS] = "images\\Move_Backward_Three_Steps.jpg";
+	MenuItemImages[ITM_TURN_CLOCKWISE] = "images\\Clockwise_Rotation.jpg";
+	MenuItemImages[ITM_TURN_COUNTERCLOCKWISE] = "images\\CounterClockwise_Rotation.jpg";
 	/*MenuItemImages[ITM_NEW_GAME] = "images\\";
 	MenuItemImages[ITM_SWITCH_TO_DESIGN_MODE] = "images\\";
 	MenuItemImages[ITM_REBOOT_REPAIR] = "images\\";*/
@@ -357,7 +364,14 @@ void Output::CreateCommandsBar(Command savedCommands[], int savedCommandsCount, 
 	UI.InterfaceMode = MODE_PLAY;
 	string CommandItemImages[COMMANDS_COUNT];
 	CommandItemImages[NO_COMMAND] = "images\\CommandSlot-grey.jpg";
-	CommandItemImages[MOVE_FORWARD_ONE_STEP] = "images\\MoveForwardCard.jpg";
+	CommandItemImages[MOVE_FORWARD_ONE_STEP] = "images\\Move_Forward_One_Step.jpg";
+	CommandItemImages[MOVE_FORWARD_TWO_STEPS] = "images\\Move_Forward_Two_Steps.jpg";
+	CommandItemImages[MOVE_FORWARD_THREE_STEPS] = "images\\Move_Forward_Three_Steps.jpg";
+	CommandItemImages[MOVE_BACKWARD_ONE_STEP] = "images\\Move_Backward_One_Step.jpg";
+	CommandItemImages[MOVE_BACKWARD_TWO_STEPS] = "images\\Move_Backward_Two_Steps.jpg";
+	CommandItemImages[MOVE_BACKWARD_THREE_STEPS] = "images\\Move_Backward_Three_Steps.jpg";
+	CommandItemImages[ROTATE_CLOCKWISE] = "images\\Clockwise_Rotation.jpg";
+	CommandItemImages[ROTATE_COUNTERCLOCKWISE] = "images\\CounterClockwise_Rotation.jpg";
 	// TODO: Prepare images for more items with .jpg extensions and add them to the list 
 	/*CommandItemImages[MOVE_BACKWARD_ONE_STEP]=;
 	CommandItemImages[MOVE_FORWARD_TWO_STEPS]=;
