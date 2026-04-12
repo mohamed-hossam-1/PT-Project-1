@@ -575,7 +575,7 @@ void Output::DrawPlayer(const CellPosition & cellPos, int playerNum, color playe
 	// Calculate the Y coordinate of the center of the player's triangle (based on playerNum)
 	int cy = cellStartY + ySpace + radius + 2;
 	if (playerNum == 1)
-		y += 2 * (radius + 2); // because playerNum 1 is drawn in the second row of triangles
+		cy+= 2 * (radius + 2); // because playerNum 1 is drawn in the second row of triangles
 
 	// Calculate the X coordinate of the center of the player's triangle (based on playerNum)
 	int cx = cellStartX + UI.BeltXOffset + radius + 4; // UI.BeltXOffset is used to draw players' triangles 
@@ -672,9 +672,9 @@ void Output::DrawRotatingGear(const CellPosition& cellPos, bool clockwise) const
 	// TODO: Draw the rotating gear image in the cell based on the passed direction (clockwise or counter clockwise)
 		//image required
 	if(clockwise==true)
-		DrawImageInCell(cellPos,, UI.CellWidth , UI.CellHeight );
+		DrawImageInCell(cellPos, UI.CellWidth , UI.CellHeight );
 	else
-		DrawImageInCell(cellPos, , UI.CellWidth , UI.CellHeight );//requires the ccw version of the image
+		DrawImageInCell(cellPos, UI.CellWidth , UI.CellHeight );//requires the ccw version of the image
 }
 
 void Output::DrawAntenna(const CellPosition& cellPos) const
@@ -712,7 +712,7 @@ void Output::DrawWaterPit(const CellPosition& cellPos) const
 	///TODO: Complete the implementation of the following function
 	if (!cellPos.IsValidCell())
 		return;
-	DrawCell(cellPos, , UI.CellWidth, UI.CellHeight);
+	DrawCell(cellPos, UI.CellWidth, UI.CellHeight);
 
 }
 
