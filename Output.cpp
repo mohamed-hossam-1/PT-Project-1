@@ -127,10 +127,12 @@ int Output::GetCellStartX(const CellPosition & cellPos) const
 
 int Output::GetCellStartY(const CellPosition & cellPos) const
 {
+	// Need to return to this
 	///TODO: implement the following function as described in Output.h file
 	
 	if (cellPos.IsValidCell())
 	{
+		// This line of code must be rechecked (Mohamed Hany said this)
 		return cellPos.VCell() * UI.CellHeight + UI.ToolBarHeight;
 	}
 	else
@@ -215,7 +217,13 @@ void Output::DrawImageInCell(const CellPosition& cellPos, string image, int widt
 		return;
 
 	int x = GetCellStartX(cellPos) + UI.CellWidth / 2;
-	int y = GetCellStartY(cellPos) + UI.CellHeight / 2;
+
+	/*
+	* I checked line 226 and I changed it from GetCellStartY(cellPos) + UI.CellHeight / 2 
+	to GetCellStartY(cellPos) - UI.CellHeight / 2 because the image is drawn from its upper left corner and not from its center,
+	so we need to subtract the height of the image from the Y coordinate to make it appear in the center of the cell
+	*/
+	int y = GetCellStartY(cellPos) - UI.CellHeight / 2;
 
 	// TODO: Complete the implementation of this function
 
