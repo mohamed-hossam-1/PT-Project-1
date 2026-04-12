@@ -637,6 +637,7 @@ void Output::DrawBelt(const CellPosition& fromCellPos, const CellPosition& toCel
 
 	// TODO: Draw the belt line and the triangle at the center of the line pointing to the direction of the belt
 
+
 	// TODO: 1. Set pen color and width using the appropriate parameters of UI_Info object (UI)
 	//       2. Draw the line of the belt using the appropriate coordinates
 
