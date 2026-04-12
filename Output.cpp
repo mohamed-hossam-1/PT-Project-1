@@ -341,7 +341,7 @@ void Output::CreatePlayModeToolBar() const
 	MenuItemImages[ITM_MOVE_BACKWARD_TWO_STEPS] = "images\\Move_Backward_Two_Steps.jpg";
 	MenuItemImages[ITM_MOVE_BACKWARD_THREE_STEPS] = "images\\Move_Backward_Three_Steps.jpg";
 	MenuItemImages[ITM_TURN_CLOCKWISE] = "images\\Clockwise_Rotation.jpg";
-	MenuItemImages[ITM_TURN_COUNTERCLOCKWISE] = "images\\CounterClockwise_Rotation.jpg";
+	MenuItemImages[ITM_TURN_COUNTERCLOCKWISE] = "images\\Counter_Clockwise_Rotation.jpg";
 	/*MenuItemImages[ITM_NEW_GAME] = "images\\";
 	MenuItemImages[ITM_SWITCH_TO_DESIGN_MODE] = "images\\";
 	MenuItemImages[ITM_REBOOT_REPAIR] = "images\\";*/
