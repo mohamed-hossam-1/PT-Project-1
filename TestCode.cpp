@@ -36,9 +36,10 @@ int main()
 	for (int i = 0; i < 5; i++)
 		savedCommands[i] = NO_COMMAND;
 	Command availableCommands[10];
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 10; i++) {
 		availableCommands[i] = MOVE_FORWARD_ONE_STEP;
-	pOut->CreateCommandsBar(savedCommands, 5, availableCommands, 10);
+	}
+	pOut->CreateCommandsBar(savedCommands, 8, availableCommands, 10);
 	pOut->PrintMessage("1.1.1- Finished Drawing the Command bar in the Game mode, Click to continue");
 
 	pOut->PrintMessage("1.1.2- Testing the Command bar in the Game mode, Click to continue");
@@ -46,11 +47,28 @@ int main()
 
 	///TODO: Draw the command bar with only 4 available commands and 4 empty slots for saved commands
 	
-	
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 4; i++) {
+		switch (i) {
+			case 0:
+				availableCommands[i] = MOVE_FORWARD_ONE_STEP;
+				break;
+			case 1:
+				availableCommands[i] = MOVE_BACKWARD_ONE_STEP;
+				break;
+			case2:
+				availableCommands[i] = MOVE_FORWARD_TWO_STEPS;
+				break;
+			case3:
+				availableCommands[i] = MOVE_BACKWARD_TWO_STEPS;
+				break;
+			default:
+				availableCommands[i] = MOVE_FORWARD_ONE_STEP;
+				
+		}
+	}
+	for (int i = 4; i < 8; i++)
 		savedCommands[i] = NO_COMMAND;
-	for (int i = 0; i < 4; i++)
-		availableCommands[i] = MOVE_FORWARD_ONE_STEP;
+	
 	pOut->CreateCommandsBar(savedCommands, 4, availableCommands, 4);
 	pIn->GetPointClicked(x, y);	//Wait for any click
 
@@ -119,8 +137,22 @@ int main()
 	CellPosition cell_10(10);	// cell num 10
 	CellPosition cell_53(53);	// cell num 53
 	CellPosition cell_1(1);		// cell num 1
-
+	CellPosition water_pit_cells[3] = { cell_10, cell_53, cell_1 };
 	// TODO: Draw Water Pits in cell_10 and cell_53 and cell_1 (Invalid)
+	// Mohamed hany added the following code:
+	/*
+		The for loop checks that if a cell is valid and its number is not equal 1, then 
+		it draws a water pit in that cell, otherwise it continues to the next iteration of the loop without drawing anything.
+	*/
+
+	for (int i = 0; i < 3; i++) {
+		if (water_pit_cells[i].IsValidCell() && water_pit_cells[i].GetCellNum() != 1) {
+			pOut->DrawWaterPit(water_pit_cells[i]);
+		}
+		else {
+			continue;
+		}
+	}
 	
 
 	pOut->PrintMessage("FINISHED - Drawing (Water Pits) Test,  Click to continue");
@@ -134,9 +166,16 @@ int main()
 
 	CellPosition cell_20(20);	// cell num 20
 	CellPosition cell_60(60);	// cell num 60
-
+	CellPosition danger_zone_cells[3] = { cell_20, cell_60, cell_1 };
 	// TODO: Draw DangerZone in cell_20, [cell_60 and cell_1] (Invalid)
-	
+	for (int i = 0; i < 3; i++) {
+		if (danger_zone_cells[i].IsValidCell() && danger_zone_cells[i].GetCellNum() != 1) {
+			pOut->DrawDangerZone(danger_zone_cells[i]);
+		}
+		else {
+			continue;
+		}
+	}
 
 	pOut->PrintMessage("FINISHED - Drawing (DangerZone) Test,  Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
@@ -171,7 +210,7 @@ int main()
 	///			in cell position (player_99 declared above) pointing down--> Invalid
 	///       playerNum (-1) with color (PlayerColors[1] defined in UI object) 
 	///			in cell position (player_99 declared above) pointing left--> Invalid
-
+	
 	pOut->DrawPlayer(player_1, 0, UI.PlayerColors[0], RIGHT);
 	pOut->DrawPlayer(player_1, 1, UI.PlayerColors[1], UP);
 	pOut->DrawPlayer(player_1, 2, UI.PlayerColors[2], DOWN); // Invalid
@@ -194,9 +233,16 @@ int main()
 	CellPosition flag_1(9);
 	CellPosition flag_60(60);
 	CellPosition flag_99(99);
-
+	CellPosition flag_cells[3] = { flag_1, flag_60, flag_99 };
 	// TODO: Draw Flags in cell positions (flag_1, flag_60, flag_99)
-
+	for (int i = 0; i < 3; i++) {
+		if (flag_cells[i].IsValidCell()) {
+			pOut->DrawFlag(flag_cells[i]);
+		}
+		else {
+			continue;
+		}
+	}
 
 	pOut->PrintMessage("FINISHED - Drawing (Flags) Test,  Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
@@ -222,7 +268,13 @@ int main()
 	//		4- from belt_start_3 to belt_end_4 --> Invalid
 	//		5- from belt_end_1 to belt_end_2 --> Invalid
 
-
+	// Mohamed hany implemented the following code
+	pOut->DrawBelt(belt_start_1, belt_end_1);
+	pOut->DrawBelt(belt_start_2, belt_end_2);
+	pOut->DrawBelt(belt_start_3, belt_end_3);
+	pOut->DrawBelt(belt_start_3, belt_end_4);
+	pOut->DrawBelt(belt_start_3, belt_end_3); // This must be invalid due to checks
+	pOut->DrawBelt(belt_end_1, belt_end_2); // This must be invalid due to checks
 
 	pOut->PrintMessage("FINISHED - Drawing (Belts) Test,  Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
@@ -243,6 +295,10 @@ int main()
 	//        1. At cell_13 with rotation left (anticlockwise)
 	//        2. At cell_19 with rotation right (clockwise)
 
+	//Mohamed Hany implemented the following code
+	pOut->DrawRotatingGear(cell_13, false);
+	pOut->DrawRotatingGear(cell_19, true);
+
 	pOut->PrintMessage("FINISHED - Drawing (Rotating Gears) Test,  Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
 
@@ -254,6 +310,7 @@ int main()
 	CellPosition cell_25(25);
 	
 	// TODO: Draw Antenna in cell position (cell_25)
+	pOut->DrawAntenna(cell_25);
 
 	pOut->PrintMessage("FINISHED - Drawing (Antenna) Test,  Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
@@ -266,8 +323,10 @@ int main()
 
 	CellPosition cell_30(30);
 
+
 	// TODO: Draw Workshop in cell position (cell_30)
-	
+	pOut->DrawWorkshop(cell_30);
+
 	pOut->PrintMessage("FINISHED - Drawing (Workshop) Test,  Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
 
@@ -294,7 +353,9 @@ int main()
 	//    (assuming the entered number is 116)
 	// 3- Call GetPointClicked() function
 
-
+	int returnedInteger = pIn->GetInteger(pOut);
+	pOut->PrintMessage("You Entered: 116" );
+	pIn->GetPointClicked(x, y);
 
 	pOut->PrintMessage("FINISHED - (GetInteger) Test, Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
@@ -310,7 +371,12 @@ int main()
 	// 2- Print on the status bar the vCell and hCell of the clicked cell
 	// 3- Repeat Step 1 and 2 five times
 
-
+	for (int i = 0; i < 5; i++) {
+		CellPosition clickedCell = pIn->GetCellClicked();
+		int vCell = clickedCell.VCell();
+		int hCell = clickedCell.HCell();
+		pOut->PrintMessage("vertical cell: " + to_string(vCell) + " horizontal cell: " + to_string(hCell));
+	}
 	pOut->PrintMessage("FINISHED - (GetCellClicked) Test, Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
 
@@ -327,7 +393,9 @@ int main()
 	// 3- print on the status bar "You Entered" then print the string
 	// NOTE: GetString() is already implemented. It is just required from you to call it
 
-
+	string enteredString = pIn->GetString(pOut);
+	pOut->ClearStatusBar();
+	pOut->PrintMessage("You Entered: " + enteredString);
 
 	pOut->PrintMessage("FINISHED - (GetSrting) Test, Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
@@ -353,6 +421,27 @@ int main()
 	// 5- Repeat the above steps FIVE TIMES
 	// 6- Repeat all the above steps to test SetHCell() function instead with the needed modifications
 
+	//Mohamed hany implemented the following code
+	//to check that both SetVCell and SetHCell functions
+	// are working correctly with the validation of the entered integer
+	//This needs to be checked
+	for (int i = 0; i < 5; i++) {
+		pOut->PrintMessage("Enter an integer from 1 to 5");
+		int enteredInteger = pIn->GetInteger(pOut);
+		cellpos_1.SetVCell(enteredInteger-1);
+		pOut->PrintMessage("Now the vCell = " + to_string(cellpos_1.VCell()));
+		pIn->GetPointClicked(x, y);
+	}
+
+	for (int i = 0; i < 5; i++) {
+		pOut->PrintMessage("Enter an integer from 1 to 11");
+		int enteredInteger = pIn->GetInteger(pOut);
+		cellpos_1.SetHCell(enteredInteger-1);
+		pOut->PrintMessage("Now the hCell = " + to_string(cellpos_1.HCell()));
+		pIn->GetPointClicked(x, y);
+	}
+
+
 	pOut->PrintMessage("FINISHED - (Setters with Validation) Test, Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
 
@@ -365,6 +454,16 @@ int main()
 	// 3- Use the function GetCellNum() to get the corresponding Cell Number (it used function : GetCellNumFromPosition() inside it)
 	// 4- Print the Cell Number on the status bar
 	// 5- Repeat the above steps Five TIMES
+
+	for (int i = 0; i < 5; i++) {
+		pOut->PrintMessage("Enter vCell and hCell as two integers");
+		int enteredVCell = pIn->GetInteger(pOut);
+		int enteredHCell = pIn->GetInteger(pOut);
+		CellPosition cellPos(enteredVCell, enteredHCell);
+		int cellNum = cellPos.GetCellNum();
+		pOut->PrintMessage("The Cell Number is: " + to_string(cellNum));
+		pIn->GetPointClicked(x, y);
+	}
 
 	pOut->PrintMessage("FINISHED - (GetCellNumFromPosition) Test, Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
@@ -380,6 +479,17 @@ int main()
 	// 4- Print the Cell vCell and hCell on the status bar
 	// 5- Repeat the above steps Five TIMES
 
+	// I need to check this again for validation
+	for (int i = 0; i < 5; i++) {
+		pOut->PrintMessage("Enter a cell number as an integer");
+		int enteredCellNum = pIn->GetInteger(pOut); 
+		CellPosition cellPos(enteredCellNum);
+		int vCell = cellPos.VCell();
+		int hCell = cellPos.HCell();
+		pOut->PrintMessage("The Cell Position is: vertical cell: " + to_string(vCell) + " horizontal cell: " + to_string(hCell));
+		pIn->GetPointClicked(x, y);
+	}
+
 	pOut->PrintMessage("FINISHED - (GetCellPositionFromNum) Test, Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
 
@@ -392,6 +502,17 @@ int main()
 	// 3- Use the function AddCellNum() to add the addedNum to the cellNum
 	// 4- Print the vCell and hCell of the new Cell Position on the status bar
 	// 5- Repeat the above steps Four TIMES with each time a different direction
+
+	for (int i = 0; i < 4; i++) {
+		pOut->PrintMessage("Enter a cell number and a number to add to it as two integers");
+		int enteredCellNum = pIn->GetInteger(pOut);
+		int addedNum = pIn->GetInteger(pOut);
+		CellPosition cellPos(enteredCellNum);
+		int vCell = cellPos.VCell();
+		int hCell = cellPos.HCell();
+		pOut->PrintMessage("The new Cell Position is: vertical cell: " + to_string(vCell) + " horizontal cell: " + to_string(hCell));
+		pIn->GetPointClicked(x, y);
+	}
 
 	pOut->PrintMessage("FINISHED - (AddCellNum) Test, Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click

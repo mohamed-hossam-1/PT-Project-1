@@ -694,6 +694,8 @@ void Output::DrawAntenna(const CellPosition& cellPos) const
 	
 }
 
+// Someone needs to implement this
+// This comment was added by mohamed hany
 void Output::DrawWorkshop(const CellPosition& cellPos) const
 {
 	// TODO: Validate the cell position

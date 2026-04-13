@@ -105,7 +105,7 @@ ActionType Input::GetUserAction() const
 
 			default: return EMPTY;	// A click on empty place in toolbar
 		}
-			}
+	}
 
 		// [2] User clicks on the grid area
 		if ( (y >= UI.ToolBarHeight) && (y < UI.height - UI.StatusBarHeight))
@@ -146,9 +146,8 @@ ActionType Input::GetUserAction() const
 		///TODO:
 		// perform checks similar to Design mode checks above for the Play Mode
 		// and return the corresponding ActionType
-
-		return TO_DESIGN_MODE;	// just for now ==> This should be updated
-
+		// just for now ==> This should be updated
+		
 
 
 
