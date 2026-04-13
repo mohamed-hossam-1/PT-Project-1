@@ -51,7 +51,7 @@ int Input::GetInteger(Output *pO) const
 	///TODO: implement the GetInteger function as described in Input.h file 
 	//       using function GetString() defined above and function stoi()
 
-	
+	//mohamed hossam
 
 	// Note: stoi(s) converts string s into its equivalent integer (for example, "55" is converted to 55)
 
@@ -131,7 +131,7 @@ ActionType Input::GetUserAction() const
 			case ITM_NEW_GAME: return NEW_GAME;
 			case ITM_REBOOT_REPAIR: return REBOOT_REPAIR;
 			case ITM_SWITCH_TO_DESIGN_MODE :return TO_DESIGN_MODE;
-			case ITM_EXIT: return EXIT;
+				case ITM_EXIT :return EXIT;
 			}
 
 		}
@@ -147,9 +147,6 @@ ActionType Input::GetUserAction() const
 		// perform checks similar to Design mode checks above for the Play Mode
 		// and return the corresponding ActionType
 		// just for now ==> This should be updated
-		
-
-
 
 	}	
 

@@ -287,10 +287,8 @@ void Output::CreateDesignModeToolBar() const
 	
 	///TODO: Change the path of the images as needed
 	MenuItemImages[ITM_SET_FLAG_CELL] = "images\\Menu_Dice.jpg";
-	MenuItemImages[ITM_ADD_ANTENNA] = "images\\anttena.jpg";
-
-	/*
-	MenuItemImages[ITM_ADD_BELT] = "images\\";
+	//MenuItemImages[ITM_ADD_ANTENNA] = "images\\anttena.jpg";
+	/*MenuItemImages[ITM_ADD_BELT] = "images\\";
 	MenuItemImages[ITM_ADD_WATER] = "images\\";
 	MenuItemImages[ITM_EXIT] = "images\\";
 	MenuItemImages[ITM_ADD_DANGER_ZONE] = "images\\";
@@ -336,17 +334,21 @@ void Output::CreatePlayModeToolBar() const
 	///TODO: Change the path of the images as needed
 	MenuItemImages[ITM_EXECUTE_COMMANDS] = "images\\Menu_Dice.jpg";
 	MenuItemImages[ITM_SELECT_COMMAND] = "images\\Menu_Dice.jpg";
-	MenuItemImages[ITM_MOVE_FORWARD_ONE_STEP] = "images\\Move_Forward_One_Step.jpg";
-	MenuItemImages[ITM_MOVE_FORWARD_TWO_STEPS] = "images\\Move_Forward_Two_Steps.jpg";
-	MenuItemImages[ITM_MOVE_FORWARD_THREE_STEPS] = "images\\Move_Forward_Three_Steps.jpg";
-	MenuItemImages[ITM_MOVE_BACKWARD_ONE_STEP] = "images\\Move_Backward_One_Step.jpg";
-	MenuItemImages[ITM_MOVE_BACKWARD_TWO_STEPS] = "images\\Move_Backward_Two_Steps.jpg";
-	MenuItemImages[ITM_MOVE_BACKWARD_THREE_STEPS] = "images\\Move_Backward_Three_Steps.jpg";
-	MenuItemImages[ITM_TURN_CLOCKWISE] = "images\\Clockwise_Rotation.jpg";
-	MenuItemImages[ITM_TURN_COUNTERCLOCKWISE] = "images\\Counter_Clockwise_Rotation.jpg";
 	/*MenuItemImages[ITM_NEW_GAME] = "images\\";
 	MenuItemImages[ITM_SWITCH_TO_DESIGN_MODE] = "images\\";
 	MenuItemImages[ITM_REBOOT_REPAIR] = "images\\";*/
+
+
+
+	//not correct//MenuItemImages[ITM_MOVE_FORWARD_ONE_STEP] = "images\\Move_Forward_One_Step.jpg";
+//MenuItemImages[ITM_MOVE_FORWARD_TWO_STEPS] = "images\\Move_Forward_Two_Steps.jpg";
+//MenuItemImages[ITM_MOVE_FORWARD_THREE_STEPS] = "images\\Move_Forward_Three_Steps.jpg";
+//MenuItemImages[ITM_MOVE_BACKWARD_ONE_STEP] = "images\\Move_Backward_One_Step.jpg";
+//MenuItemImages[ITM_MOVE_BACKWARD_TWO_STEPS] = "images\\Move_Backward_Two_Steps.jpg";
+//MenuItemImages[ITM_MOVE_BACKWARD_THREE_STEPS] = "images\\Move_Backward_Three_Steps.jpg";
+//MenuItemImages[ITM_TURN_CLOCKWISE] = "images\\Clockwise_Rotation.jpg";
+//MenuItemImages[ITM_TURN_COUNTERCLOCKWISE] = "images\\Counter_Clockwise_Rotation.jpg";
+
 
 
 
@@ -379,6 +381,8 @@ void Output::CreateCommandsBar(Command savedCommands[], int savedCommandsCount, 
 	CommandItemImages[ROTATE_CLOCKWISE] = "images\\Clockwise_Rotation.jpg";
 	CommandItemImages[ROTATE_COUNTERCLOCKWISE] = "images\\Counter_Clockwise_Rotation.jpg";
 	// TODO: Prepare images for more items with .jpg extensions and add them to the list 
+
+
 	/*CommandItemImages[MOVE_BACKWARD_ONE_STEP]=;
 	CommandItemImages[MOVE_FORWARD_TWO_STEPS]=;
 	CommandItemImages[MOVE_BACKWARD_TWO_STEPS]=;
