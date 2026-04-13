@@ -581,7 +581,7 @@ void Output::DrawPlayer(const CellPosition & cellPos, int playerNum, color playe
 	// Calculate the Y coordinate of the center of the player's triangle (based on playerNum)
 	int cy = cellStartY + ySpace + radius + 2;
 	if (playerNum == 1)
-		y += 2 * (radius + 2); // because playerNum 1 is drawn in the second row of triangles
+		cy += 2 * (radius + 2); // because playerNum 1 is drawn in the second row of triangles
 
 	// Calculate the X coordinate of the center of the player's triangle (based on playerNum)
 	int cx = cellStartX + UI.BeltXOffset + radius + 4; // UI.BeltXOffset is used to draw players' triangles 
@@ -677,10 +677,10 @@ void Output::DrawRotatingGear(const CellPosition& cellPos, bool clockwise) const
 		return;
 	// TODO: Draw the rotating gear image in the cell based on the passed direction (clockwise or counter clockwise)
 		//image required
-	if(clockwise==true)
-		DrawImageInCell(cellPos,, UI.CellWidth , UI.CellHeight );
+	if (clockwise == true)
+		DrawImageInCell(cellPos, "images\\Clockwise_Gear.jpg", UI.CellWidth, UI.CellHeight);//requires the cw version of the image
 	else
-		DrawImageInCell(cellPos, , UI.CellWidth , UI.CellHeight );//requires the ccw version of the image
+		DrawImageInCell(cellPos, "images\\Counter_Clockwise_Gear.jpg", UI.CellWidth, UI.CellHeight);//requires the ccw version of the image
 }
 
 void Output::DrawAntenna(const CellPosition& cellPos) const
@@ -689,7 +689,7 @@ void Output::DrawAntenna(const CellPosition& cellPos) const
 	if (!cellPos.IsValidCell())
 		return;
 	// TODO: Draw the antenna image in the cell
-	DrawImageInCell(cellPos, , UI.CellWidth, UI.CellHeight);
+	DrawImageInCell(cellPos, "images\\Antenna2.jpg", UI.CellWidth, UI.CellHeight);
 	
 	
 }
@@ -700,7 +700,7 @@ void Output::DrawWorkshop(const CellPosition& cellPos) const
 	if (!cellPos.IsValidCell())
 		return;
 	// TODO: Draw the workshop image in the cell
-	DrawCell(cellPos, , UI.CellWidth, UI.CellHeight);
+	DrawCell(cellPos,UI.CellColor);
 
 
 }
@@ -718,7 +718,7 @@ void Output::DrawWaterPit(const CellPosition& cellPos) const
 	///TODO: Complete the implementation of the following function
 	if (!cellPos.IsValidCell())
 		return;
-	DrawCell(cellPos, , UI.CellWidth, UI.CellHeight);
+	DrawImageInCell(cellPos,"images\\Water_Pit.jpg",UI.CellWidth,UI.CellHeight);
 
 }
 
