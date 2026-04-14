@@ -52,7 +52,7 @@ Output::Output()
 	UI.BeltYOffset = (UI.CellHeight / 4) * 3;
 
 	// Flag and Flag Pole Colors
-	UI.FlagPoleWidth = 4;
+	UI.FlagPoleWidth = 20;
 	UI.FlagPoleHeight = UI.CellHeight / 2;
 	UI.FlagWidth = UI.CellWidth / 4;
 	UI.FlagHeight = UI.FlagPoleHeight / 2;
@@ -222,10 +222,16 @@ void Output::DrawImageInCell(const CellPosition& cellPos, string image, int widt
 	int y = GetCellStartY(cellPos) + UI.CellHeight / 2;
 
 	// TODO: Complete the implementation of this function
+	int cellX = GetCellStartX(cellPos);
+	int cellY = GetCellStartY(cellPos);
 
+	// Calculate image top-left to center it within the cell
+	int imgX = cellX + (UI.CellWidth - width) / 2;
+	int imgY = cellY + (UI.CellHeight - height) / 2;
 	pWind->SetPen(UI.CellColor, 1);
 	pWind->SetBrush(UI.CellColor);
-	pWind->DrawImage(image, x, y, width, height);
+	pWind->DrawImage(image, imgX, imgY, width, height);
+
 
 }
 
@@ -619,8 +625,8 @@ void Output::DrawBelt(const CellPosition& fromCellPos, const CellPosition& toCel
 	int toCellStartX = GetCellStartX(toCellPos);
 	int toCellStartY = GetCellStartY(toCellPos);
 
-	int beltFromCellX = fromCellStartX + (UI.CellWidth / 2) + UI.BeltXOffset;
-	int beltToCellX = toCellStartX + UI.BeltXOffset;
+	int beltFromCellX = fromCellStartX + (UI.CellWidth / 2) ;
+	int beltToCellX = toCellStartX + (UI.CellWidth / 2) ;
 
 	int beltFromCellY = fromCellStartY + UI.BeltYOffset;
 	int beltToCellY = toCellStartY + UI.BeltYOffset;
@@ -639,13 +645,13 @@ void Output::DrawBelt(const CellPosition& fromCellPos, const CellPosition& toCel
 	int triangleHeight = UI.CellHeight / 4;
 	int midX=(beltFromCellX+beltFromCellX)/2;
 	int midY= (beltFromCellY + beltToCellY) / 2;
-	if ((beltFromCellX = beltToCellX) && (beltToCellY-beltFromCellY) > 0)
+	if ((beltFromCellX == beltToCellX) && (beltToCellY-beltFromCellY) > 0)
 		DrawTriangle(midX, midY, triangleHeight, triangleWidth, DOWN,UI.BeltColor);
-	else if ((beltFromCellX = beltToCellX) && (beltToCellY - beltFromCellY) < 0)
+	else if ((beltFromCellX == beltToCellX) && (beltToCellY - beltFromCellY) < 0)
 		DrawTriangle(midX, midY, triangleHeight, triangleWidth, UP,UI.BeltColor);
-	else if ((beltFromCellY = beltToCellY) && (beltFromCellX - beltToCellX) < 0)
+	else if ((beltFromCellY == beltToCellY) && (beltFromCellX - beltToCellX) < 0)
 		DrawTriangle(midX, midY, triangleHeight, triangleWidth, RIGHT,UI.BeltColor);
-	else if ((beltFromCellY = beltToCellY) && (beltFromCellX - beltToCellX) > 0)
+	else if ((beltFromCellY == beltToCellY) && (beltFromCellX - beltToCellX) > 0)
 		DrawTriangle(midX, midY, triangleHeight, triangleWidth,LEFT,UI.BeltColor);
 }
 
@@ -665,7 +671,7 @@ void Output::DrawFlag(const CellPosition& cellPos) const
 
 	// TODO: 1. Draw the flag pole (the line)
 	int flagPoleStartX = cellStartX + UI.CellWidth / 2;
-	int flagPoleStartY = cellStartY + UI.CellHeight / 4;
+	int flagPoleStartY = cellStartY - UI.CellHeight / 4;
 	int flagCenterY = flagPoleStartY -(UI.FlagPoleHeight - UI.FlagWidth / 2);
 	int flagCenterX = flagPoleStartX + UI.FlagHeight / 2;
 
@@ -716,7 +722,7 @@ void Output::DrawDangerZone(const CellPosition& cellPos) const
     ///TODO: Complete the implementation of the following function
 	if (!cellPos.IsValidCell())
 		return;
-
+	//needs fixing
 }
 
 void Output::DrawWaterPit(const CellPosition& cellPos) const
@@ -725,7 +731,7 @@ void Output::DrawWaterPit(const CellPosition& cellPos) const
 	if (!cellPos.IsValidCell())
 		return;
 	DrawImageInCell(cellPos,"images\\Water_Pit.jpg",UI.CellWidth,UI.CellHeight);
-
+	//neeeds fixing 
 }
 
 

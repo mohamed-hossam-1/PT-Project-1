@@ -23,7 +23,7 @@ int main()
 	//			- This has already been done through the constrcutor of class Output
 	///////////////////////////////////////////////////////////////////////////////////
 
-	pOut->PrintMessage("TEST1: Drawing Tool bar, Grid, Status bar and Empty Command bar, Click anywhere to continue");
+	/*pOut->PrintMessage("TEST1: Drawing Tool bar, Grid, Status bar and Empty Command bar, Click anywhere to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
 
 
@@ -55,10 +55,10 @@ int main()
 			case 1:
 				availableCommands[i] = MOVE_BACKWARD_ONE_STEP;
 				break;
-			case2:
+			case 2:
 				availableCommands[i] = MOVE_FORWARD_TWO_STEPS;
 				break;
-			case3:
+			case 3:
 				availableCommands[i] = MOVE_BACKWARD_TWO_STEPS;
 				break;
 			default:
@@ -66,7 +66,7 @@ int main()
 				
 		}
 	}
-	for (int i = 4; i < 8; i++)
+	for (int i = 0; i < 4; i++)
 		savedCommands[i] = NO_COMMAND;
 	
 	pOut->CreateCommandsBar(savedCommands, 4, availableCommands, 4);
@@ -118,8 +118,7 @@ int main()
 
 	pOut->PrintMessage("1.1.4- Finished Testing the Command bar in the Game mode, Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
-
-
+	*/
 	///////////////////////////////////////////////////////////////////////////////////
 	// TEST 2:	
 	//			Testing the Output Class
@@ -502,12 +501,13 @@ int main()
 	// 3- Use the function AddCellNum() to add the addedNum to the cellNum
 	// 4- Print the vCell and hCell of the new Cell Position on the status bar
 	// 5- Repeat the above steps Four TIMES with each time a different direction
-
+	Direction dir[4] = { UP,DOWN,RIGHT,LEFT };
 	for (int i = 0; i < 4; i++) {
 		pOut->PrintMessage("Enter a cell number and a number to add to it as two integers");
 		int enteredCellNum = pIn->GetInteger(pOut);
 		int addedNum = pIn->GetInteger(pOut);
 		CellPosition cellPos(enteredCellNum);
+		cellPos.AddCellNum(addedNum, dir[i]);
 		int vCell = cellPos.VCell();
 		int hCell = cellPos.HCell();
 		pOut->PrintMessage("The new Cell Position is: vertical cell: " + to_string(vCell) + " horizontal cell: " + to_string(hCell));
@@ -539,10 +539,10 @@ int main()
 			case SET_FLAG_CELL:
 				pOut->PrintMessage("Action: SET_FLAG_CELL , Click anywhere");
 				break;
-		
-
-			case EXIT:				
-				break;
+		         
+			
+				case EXIT:				
+					break;
 
 			case TO_PLAY_MODE:
 
@@ -551,11 +551,46 @@ int main()
 
 				///TODO:  Call Function (PrintPlayersInfo) of Class Output with a string similar to 
 				//        the one given in the screenshot of project document 
-
+				pOut->PrintPlayersInfo("P1(2, Right, 10), P2(2, Up, 10) | Curr = P1");
 				break;
 
 
 				///TODO:  ADD Cases similarly for ALL the remaining actions of DESIGN Mode
+			case ADD_BELT:
+				pOut->PrintMessage("Action: ADD_BELT , Click anywhere");
+				break;
+
+			case  ADD_WATER:
+				pOut->PrintMessage("Action: ADD_WATER , Click anywhere");
+				break;
+			case	ADD_DANGER_ZONE:
+				pOut->PrintMessage("Action: ADD_DANGER_ZONE , Click anywhere");
+				break;
+			case ADD_WORKSHOP:
+				pOut->PrintMessage("Action: ADD_WORKSHOP , Click anywhere");
+				break;
+
+			case ADD_ROTATING_GEAR:
+				pOut->PrintMessage("Action: ADD_ROTATING_GEAR , Click anywhere");
+				break;
+			case COPY_OBJECT:
+				pOut->PrintMessage("Action: COPY_OBJECT , Click anywhere");
+				break;
+			case CUT_OBJECT:
+				pOut->PrintMessage("Action: CUT_OBJECT, Click anywhere");
+				break;
+			case PASTE_OBJECT:
+				pOut->PrintMessage("Action: PASTE_OBJECT , Click anywhere");
+				break;
+			case DELETE_OBJECT:
+				pOut->PrintMessage("Action: DELETE OBJECT, Click anywhere");
+				break;
+			case SAVE_GRID:
+				pOut->PrintMessage("Action: SAVE_GRID , Click anywhere");
+				break;
+			case LOAD_GRID:
+				pOut->PrintMessage("Action: LOAD_GRID , Click anywhere");
+				break;
 
 			case EXECUTE_COMMANDS:
 				pOut->PrintMessage("Action: EXECUTE_COMMAND , Click anywhere");
@@ -580,7 +615,15 @@ int main()
 				break;
 
 				///TODO:  ADD Cases similarly for ALL the remaining actions of PLAY Mode
-
+					case NEW_GAME:
+						pOut->PrintMessage("Action: NEW_GAME , Click anywhere");
+						break;
+					case EMPTY:
+						pOut->PrintMessage("Action: EMPTY , Click anywhere");
+						break;
+					case REBOOT_REPAIR:
+						pOut->PrintMessage("Action: REBOOT_REPAIR , Click anywhere");
+						break;
 		}
 	}while(ActType != EXIT);
 
