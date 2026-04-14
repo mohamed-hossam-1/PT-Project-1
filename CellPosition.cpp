@@ -104,13 +104,13 @@ int CellPosition::GetCellNumFromPosition(const CellPosition & cellPosition)
 	case 0:
 		cellNumber = 45 + horizontalCell;
 		break;
-	case1:
+	case 1:
 		cellNumber = 34 + horizontalCell;
 		break;
-	case2:
+	case 2:
 		cellNumber = 23 + horizontalCell;
 		break;
-	case3:
+	case 3:
 		cellNumber = 12 + horizontalCell;
 		break;
 	default:

@@ -23,7 +23,7 @@ int main()
 	//			- This has already been done through the constrcutor of class Output
 	///////////////////////////////////////////////////////////////////////////////////
 
-	/*pOut->PrintMessage("TEST1: Drawing Tool bar, Grid, Status bar and Empty Command bar, Click anywhere to continue");
+	pOut->PrintMessage("TEST1: Drawing Tool bar, Grid, Status bar and Empty Command bar, Click anywhere to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
 
 
@@ -39,7 +39,7 @@ int main()
 	for (int i = 0; i < 10; i++) {
 		availableCommands[i] = MOVE_FORWARD_ONE_STEP;
 	}
-	pOut->CreateCommandsBar(savedCommands, 8, availableCommands, 10);
+	pOut->CreateCommandsBar(savedCommands, 5, availableCommands, 10);
 	pOut->PrintMessage("1.1.1- Finished Drawing the Command bar in the Game mode, Click to continue");
 
 	pOut->PrintMessage("1.1.2- Testing the Command bar in the Game mode, Click to continue");
@@ -118,7 +118,7 @@ int main()
 
 	pOut->PrintMessage("1.1.4- Finished Testing the Command bar in the Game mode, Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
-	*/
+	
 	///////////////////////////////////////////////////////////////////////////////////
 	// TEST 2:	
 	//			Testing the Output Class
