@@ -394,11 +394,10 @@ int main()
 	// 2- After reading the string clear the status bar
 	// 3- print on the status bar "You Entered" then print the string
 	// NOTE: GetString() is already implemented. It is just required from you to call it
-
+	pOut->PrintMessage("Enter a String");
 	string enteredString = pIn->GetString(pOut);
-	pOut->ClearStatusBar();
 	pOut->PrintMessage("You Entered: " + enteredString);
-
+	pIn->GetPointClicked(x, y);
 	pOut->PrintMessage("FINISHED - (GetSrting) Test, Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
 

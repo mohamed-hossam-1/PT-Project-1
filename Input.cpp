@@ -140,24 +140,7 @@ ActionType Input::GetUserAction() const
 		{
 			return GRID_AREA;
 		}
-		if ((y >= UI.ToolBarHeight) && (y < UI.CommandsBarHeight)) {
-			int clickedItemOrder = (x / UI.CommandItemWidth);
-
-			switch (clickedItemOrder) {
-
-			case NO_COMMAND:return  NO_COMMANDS;
-			case MOVE_FORWARD_ONE_STEP:return FORWARD_ONE_STEP;
-			case MOVE_BACKWARD_ONE_STEP:return BACKWARD_ONE_STEP;
-			case MOVE_FORWARD_TWO_STEPS:return FORWARD_TWO_STEPS;
-			case MOVE_BACKWARD_TWO_STEPS:return BACKWARD_TWO_STEPS;
-			case MOVE_FORWARD_THREE_STEPS:return FORWARD_THREE_STEPS;
-			case MOVE_BACKWARD_THREE_STEPS:return BACKWARD_THREE_STEPS;
-			case ROTATE_CLOCKWISE:return CLOCKWISE;
-			case ROTATE_COUNTERCLOCKWISE:return COUNTERCLOCKWISE;
-
-
-			}
-		}
+	
 		return STATUS;
 
 		///TODO:
@@ -183,8 +166,8 @@ CellPosition Input::GetCellClicked() const
 
 		if (y >= UI.ToolBarHeight && y <= (UI.height - UI.CommandsBarHeight))
 		{
-			cellPos.SetHCell(x / UI.CellWidth);
-			cellPos.SetVCell(y-UI.ToolBarHeight / UI.CellHeight);
+			cellPos.SetHCell((x / UI.CellWidth)+1);
+			cellPos.SetVCell((y - UI.ToolBarHeight / UI.CellHeight)+1);
 
 
 			///TODO: SetHCell and SetVCell of the object cellPost appropriately
