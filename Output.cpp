@@ -297,8 +297,9 @@ void Output::CreateDesignModeToolBar() const
 	MenuItemImages[ITM_ADD_DANGER_ZONE] = "images\\Add_Danger_Zone.jpg";
 	MenuItemImages[ITM_ADD_WORKSHOP] = "images\\Add_Workshop.jpg";
 	MenuItemImages[ITM_ADD_ROTATING_GEAR] = "images\\Add_Gear.jpg";
-	/*
 	
+	
+	/*
 	MenuItemImages[ITM_COPY_OBJECT] = "images\\";
 	MenuItemImages[ITM_CUT_OBJECT] = "images\\";
 	MenuItemImages[ITM_PASTE_OBJECT] = "images\\";
@@ -460,8 +461,13 @@ void Output::PrintMessage(string msg) const	//Prints a message on status bar
 
 void Output::PrintInteger(int numE) const 
 {
-	
 
+	ClearStatusBar();	// First clear the status bar from any previous writing
+
+	// Set pen and font before drawing the string on the window
+	pWind->SetPen(UI.MsgColor);
+	pWind->SetFont(18, BOLD, BY_NAME, "Verdana");
+	pWind->DrawInteger(10, UI.height - (int)(UI.StatusBarHeight / 1.3), numE);
 
 }
 

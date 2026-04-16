@@ -353,7 +353,10 @@ int main()
 	// 3- Call GetPointClicked() function
 	pOut->PrintMessage("Enter an Integer");
 	int returnedInteger = pIn->GetInteger(pOut);
-	pOut->PrintMessage("You Entered: " + to_string(returnedInteger));
+
+	pIn->GetPointClicked(x, y);	//Wait for any click
+	pOut->PrintMessage("You Entered: ");
+	pOut->PrintInteger(returnedInteger);
 	pIn->GetPointClicked(x, y);
 	pOut->PrintMessage("FINISHED - (GetInteger) Test, Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
