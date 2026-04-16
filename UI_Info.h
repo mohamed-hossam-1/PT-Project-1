@@ -28,7 +28,6 @@ enum DESIGN_MODE_ITEMS // The items of the Design Mode (you should add more item
 	ITM_ADD_ANTENNA,
     ITM_ADD_BELT,           
     ITM_ADD_WATER,          
-	ITM_EXIT,
     ITM_ADD_DANGER_ZONE,    
     ITM_ADD_WORKSHOP,       
     ITM_ADD_ROTATING_GEAR,  
@@ -37,7 +36,8 @@ enum DESIGN_MODE_ITEMS // The items of the Design Mode (you should add more item
     ITM_PASTE_OBJECT,          
     ITM_DELETE_OBJECT,         
     ITM_SAVE_GRID,          
-    ITM_LOAD_GRID,          
+    ITM_LOAD_GRID,   
+	ITM_EXIT,
 	///TODO: Add more items names here
 
 	DESIGN_ITM_COUNT	// no. of items ==> This should be the last line in this enum

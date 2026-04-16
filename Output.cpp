@@ -12,10 +12,10 @@ Output::Output()
 	// Widths and Heights
 
 	UI.StatusBarHeight = 60;
-	UI.CommandsBarHeight = 100;
-	UI.CommandItemWidth = 70;
-	UI.ToolBarHeight = 55;
-	UI.MenuItemWidth = 55;
+	UI.CommandsBarHeight = 90;
+	UI.CommandItemWidth = 90;
+	UI.ToolBarHeight = 65;
+	UI.MenuItemWidth = 65;
 
 	UI.width = 1210; // make it divisible by NumHorizontalCells
 	UI.height = 627; 
@@ -26,39 +26,38 @@ Output::Output()
 	UI.CellHeight = (UI.height -  UI.ToolBarHeight - UI.StatusBarHeight - UI.CommandsBarHeight) / NumVerticalCells;
 
 	// Pen Colors of messages of status bar and players' info
-	UI.MsgColor = DARKRED;
-	UI.PlayerInfoColor = DARKSLATEBLUE;
+	UI.MsgColor = BLACK;
+	UI.PlayerInfoColor = BENTENLIME;
 
 	// Background Colors of toolbar and statusbar 
-	UI.ToolBarColor = WHITE;
-	UI.StatusBarColor = LIGHTGRAY; 
+	UI.ToolBarColor = BLACK;
+	UI.StatusBarColor = BENTENLIME; 
 	UI.CommandBarColor = BLACK;
-
 	// Line Colors of the borders of each cell
-	UI.GridLineColor = WHITE;
+	UI.GridLineColor = BENTENLIME;
 
 	// Cell Color if Empty & Cell Number Font & Color
-	UI.CellColor = LIGHTSLATEBLUE;
-	UI.CellNumFont = 13;
+	UI.CellColor = BENTENGRAY;
+	UI.CellNumFont = 14;
 	UI.CellNumColor = UI.GridLineColor;
 
 
 	// Belt Line Width and Color
 	UI.BeltLineWidth = 6;
-	UI.BeltColor = DARKSLATEBLUE;
+	UI.BeltColor = BENTENGOLD;
 
 	// The X and Y Offsets of the Space BEFORE Drawing the Belt (offset from the start X and Y of the Cell)
 	UI.BeltXOffset = (UI.CellWidth - 2 * UI.BeltLineWidth) / 5;
 	UI.BeltYOffset = (UI.CellHeight / 4) * 3;
 
 	// Flag and Flag Pole Colors
-	UI.FlagPoleWidth = 20;
+	UI.FlagPoleWidth = 100;
 	UI.FlagPoleHeight = UI.CellHeight / 2;
 	UI.FlagWidth = UI.CellWidth / 4;
 	UI.FlagHeight = UI.FlagPoleHeight / 2;
 
-	UI.FlagColor = RED;
-	UI.FlagPoleColor = GHOSTWHITE;
+	UI.FlagColor = BENTENGOLD;
+	UI.FlagPoleColor = BENTENLIME;
 
 
 	// Commands X and Y Coordinates
@@ -67,8 +66,8 @@ Output::Output()
 
 
 	// Colors of the 2 Players
-	UI.PlayerColors[0] = GOLD;
-	UI.PlayerColors[1] = DARKSLATEBLUE;
+	UI.PlayerColors[0] = WHITESMOKE;
+	UI.PlayerColors[1] = ORANGERED;
 	/*UI.PlayerColors[2] = KHAKI;
 	UI.PlayerColors[3] = CHOCOLATE;*/
 
@@ -289,18 +288,17 @@ void Output::CreateDesignModeToolBar() const
 	// reoder them in UI_Info.h ==> enum DESIGN_MODE_ITEMS
 	// ** MAKE SURE THAT THE IMAGES ARE .JPG FILES **
 	string MenuItemImages[DESIGN_ITM_COUNT];
-	MenuItemImages[ITM_EXIT] = "images\\Menu_Exit.jpg";
 	MenuItemImages[ITM_SWITCH_TO_PLAY_MODE] = "images\\Menu_SwitchToGame.jpg";
-	
 	///TODO: Change the path of the images as needed
-	MenuItemImages[ITM_SET_FLAG_CELL] = "images\\Menu_Dice.jpg";
-	//MenuItemImages[ITM_ADD_ANTENNA] = "images\\anttena.jpg";
-	/*MenuItemImages[ITM_ADD_BELT] = "images\\";
-	MenuItemImages[ITM_ADD_WATER] = "images\\";
-	MenuItemImages[ITM_EXIT] = "images\\";
-	MenuItemImages[ITM_ADD_DANGER_ZONE] = "images\\";
-	MenuItemImages[ITM_ADD_WORKSHOP] = "images\\";
-	MenuItemImages[ITM_ADD_ROTATING_GEAR] = "images\\";
+	MenuItemImages[ITM_SET_FLAG_CELL] = "images\\Set_Flag.jpg";
+	MenuItemImages[ITM_ADD_ANTENNA] = "images\\Add_Antenna.jpg";
+	MenuItemImages[ITM_ADD_BELT] = "images\\Add_Belt.jpg";
+	MenuItemImages[ITM_ADD_WATER] = "images\\Add_Water_Pit.jpg";
+	MenuItemImages[ITM_ADD_DANGER_ZONE] = "images\\Add_Danger_Zone.jpg";
+	MenuItemImages[ITM_ADD_WORKSHOP] = "images\\Add_Workshop.jpg";
+	MenuItemImages[ITM_ADD_ROTATING_GEAR] = "images\\Add_Gear.jpg";
+	/*
+	
 	MenuItemImages[ITM_COPY_OBJECT] = "images\\";
 	MenuItemImages[ITM_CUT_OBJECT] = "images\\";
 	MenuItemImages[ITM_PASTE_OBJECT] = "images\\";
@@ -309,6 +307,7 @@ void Output::CreateDesignModeToolBar() const
 	MenuItemImages[ITM_LOAD_GRID] = "images\\";
 	*/
 	///TODO: Prepare images for each menu item and add it to the list
+	MenuItemImages[ITM_EXIT] = "images\\Menu_Exit.jpg";
 
 
 
@@ -358,6 +357,8 @@ void Output::CreatePlayModeToolBar() const
 
 void Output::CreateCommandsBar(Command savedCommands[], int savedCommandsCount, Command availableCommands[], int availableCommandsCount) const
 {
+	// TODO: Prepare images for more items with .jpg extensions and add them to the list 
+
     ClearCommandsBar();
 	UI.InterfaceMode = MODE_PLAY;
 	string CommandItemImages[COMMANDS_COUNT];
@@ -370,18 +371,7 @@ void Output::CreateCommandsBar(Command savedCommands[], int savedCommandsCount, 
 	CommandItemImages[MOVE_BACKWARD_THREE_STEPS] = "images\\Move_Backward_Three_Steps.jpg";
 	CommandItemImages[ROTATE_CLOCKWISE] = "images\\Clockwise_Rotation.jpg";
 	CommandItemImages[ROTATE_COUNTERCLOCKWISE] = "images\\Counter_Clockwise_Rotation.jpg";
-	// TODO: Prepare images for more items with .jpg extensions and add them to the list 
-
-
-	/*CommandItemImages[MOVE_BACKWARD_ONE_STEP]=;
-	CommandItemImages[MOVE_FORWARD_TWO_STEPS]=;
-	CommandItemImages[MOVE_BACKWARD_TWO_STEPS]=;
-	CommandItemImages[MOVE_FORWARD_THREE_STEPS]=;
-	CommandItemImages[MOVE_BACKWARD_THREE_STEPS]=;
-	CommandItemImages[ROTATE_CLOCKWISE]=;
-	CommandItemImages[ROTATE_COUNTERCLOCKWISE]=;
-	*/
-
+	
 
 	DrawSavedCommands(savedCommands, savedCommandsCount, CommandItemImages);
 	DrawAvailableCommands(availableCommands, availableCommandsCount, CommandItemImages);
@@ -464,6 +454,15 @@ void Output::PrintMessage(string msg) const	//Prints a message on status bar
 	pWind->SetPen(UI.MsgColor);
 	pWind->SetFont(18, BOLD , BY_NAME, "Verdana");   
 	pWind->DrawString(10, UI.height - (int)(UI.StatusBarHeight/1.3), msg);
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+void Output::PrintInteger(int numE) const 
+{
+	
+
+
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////

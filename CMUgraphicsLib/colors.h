@@ -117,7 +117,7 @@ const color GREEN = color(0, 255, 0);
 const color CHARTREUSE = color(127, 255, 0);
 const color MEDIUMSPRINGGREEN = color(0, 250, 154);
 const color GREENYELLOW = color(173, 255, 47);
-const color LIMEGREEN = color(50, 205, 50);
+const color LIMEGREEN = color(146, 200, 60);
 const color YELLOWGREEN = color(154, 205, 50);
 const color FORESTGREEN = color(34, 139, 34);
 const color OLIVEDRAB = color(107, 142, 35);
@@ -175,12 +175,18 @@ const color PURPLE = color(160, 32, 240);
 const color MEDIUMPURPLE = color(147, 112, 219);
 const color THISTLE = color(216, 191, 216);
 const color DARKGREY = color(169, 169, 169);
-const color DARKGRAY = color(169, 169, 169);
+const color DARKGRAY = color(84, 84, 84);
 const color DARKBLUE = color(0, 0, 139);
 const color DARKCYAN = color(0, 139, 139);
 const color DARKMAGENTA = color(139, 0, 139);
 const color DARKRED = color(139, 0, 0);
 const color LIGHTGREEN = color(144, 238, 144);
+const color BENTENGRAY = color(44, 50, 56);
+const color BENTENGOLD = color(238, 191, 31);
+const color BENTENSLATEBLUE = color(77, 107, 114);
+const color BENTENLIME = color(188, 211, 48);
+const color BENTENDARKBLUE = color(49, 59, 158);
+
 
 
 #endif //COLOR_H
