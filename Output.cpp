@@ -133,8 +133,9 @@ int Output::GetCellStartY(const CellPosition & cellPos) const
 	if (cellPos.IsValidCell())
 	{
 		// This line of code must be rechecked (Mohamed Hany said this)
+		// The code has been checked and done - Kelany
 		// I changed UI.CommandbarHeight to UI.StatusBarHeight
-		return cellPos.VCell() * UI.CellHeight + UI.StatusBarHeight;
+		return cellPos.VCell() * UI.CellHeight + UI.ToolBarHeight;
 	}
 	else
 	{
@@ -343,23 +344,6 @@ void Output::CreatePlayModeToolBar() const
 	/*MenuItemImages[ITM_NEW_GAME] = "images\\";
 	MenuItemImages[ITM_SWITCH_TO_DESIGN_MODE] = "images\\";
 	MenuItemImages[ITM_REBOOT_REPAIR] = "images\\";*/
-
-
-
-	//not correct//MenuItemImages[ITM_MOVE_FORWARD_ONE_STEP] = "images\\Move_Forward_One_Step.jpg";
-//MenuItemImages[ITM_MOVE_FORWARD_TWO_STEPS] = "images\\Move_Forward_Two_Steps.jpg";
-//MenuItemImages[ITM_MOVE_FORWARD_THREE_STEPS] = "images\\Move_Forward_Three_Steps.jpg";
-//MenuItemImages[ITM_MOVE_BACKWARD_ONE_STEP] = "images\\Move_Backward_One_Step.jpg";
-//MenuItemImages[ITM_MOVE_BACKWARD_TWO_STEPS] = "images\\Move_Backward_Two_Steps.jpg";
-//MenuItemImages[ITM_MOVE_BACKWARD_THREE_STEPS] = "images\\Move_Backward_Three_Steps.jpg";
-//MenuItemImages[ITM_TURN_CLOCKWISE] = "images\\Clockwise_Rotation.jpg";
-//MenuItemImages[ITM_TURN_COUNTERCLOCKWISE] = "images\\Counter_Clockwise_Rotation.jpg";
-
-
-
-
-
-
 
 
 	///TODO: Prepare images for each menu item and add it to the list
@@ -643,7 +627,7 @@ void Output::DrawBelt(const CellPosition& fromCellPos, const CellPosition& toCel
 	pWind->DrawLine(beltFromCellX, beltFromCellY, beltToCellX + 1, beltToCellY + 1);
 	int triangleWidth = UI.CellWidth / 4;
 	int triangleHeight = UI.CellHeight / 4;
-	int midX=(beltFromCellX+beltFromCellX)/2;
+	int midX=(beltFromCellX+beltToCellX)/2;
 	int midY= (beltFromCellY + beltToCellY) / 2;
 	if ((beltFromCellX == beltToCellX) && (beltToCellY-beltFromCellY) > 0)
 		DrawTriangle(midX, midY, triangleHeight, triangleWidth, DOWN,UI.BeltColor);
@@ -671,11 +655,11 @@ void Output::DrawFlag(const CellPosition& cellPos) const
 
 	// TODO: 1. Draw the flag pole (the line)
 	int flagPoleStartX = cellStartX + UI.CellWidth / 2;
-	int flagPoleStartY = cellStartY - UI.CellHeight / 4;
+	int flagPoleStartY = cellStartY + UI.ToolBarHeight + UI.CellHeight / 10;
 	int flagCenterY = flagPoleStartY -(UI.FlagPoleHeight - UI.FlagWidth / 2);
 	int flagCenterX = flagPoleStartX + UI.FlagHeight / 2;
 
-	// 		 2. Draw the flag (the triangle)
+	// 2. Draw the flag (the triangle)
 	pWind->DrawLine(flagPoleStartX, flagPoleStartY, flagPoleStartX + 1, flagPoleStartY - UI.FlagPoleHeight + 1);
 	DrawTriangle(flagCenterX, flagCenterY, UI.FlagHeight, UI.FlagHeight, RIGHT,UI.FlagColor);
 }
@@ -687,10 +671,14 @@ void Output::DrawRotatingGear(const CellPosition& cellPos, bool clockwise) const
 		return;
 	// TODO: Draw the rotating gear image in the cell based on the passed direction (clockwise or counter clockwise)
 		//image required
-	if (clockwise == true)
+	if (clockwise == true) {
+		pWind->SetPen(UI.CellColor, 1);
 		DrawImageInCell(cellPos, "images\\Clockwise_Gear.jpg", UI.CellWidth, UI.CellHeight);//requires the cw version of the image
-	else
+	}
+	else {
+		pWind->SetPen(UI.CellColor, 1);
 		DrawImageInCell(cellPos, "images\\Counter_Clockwise_Gear.jpg", UI.CellWidth, UI.CellHeight);//requires the ccw version of the image
+	}
 }
 
 void Output::DrawAntenna(const CellPosition& cellPos) const
@@ -699,7 +687,8 @@ void Output::DrawAntenna(const CellPosition& cellPos) const
 	if (!cellPos.IsValidCell())
 		return;
 	// TODO: Draw the antenna image in the cell
-	DrawImageInCell(cellPos, "images\\Antenna2.jpg", UI.CellWidth, UI.CellHeight);
+	pWind->SetPen(UI.CellColor, 1);
+	DrawImageInCell(cellPos, "images\\Antenna.jpg", UI.CellWidth, UI.CellHeight);
 	
 	
 }
@@ -712,7 +701,7 @@ void Output::DrawWorkshop(const CellPosition& cellPos) const
 	if (!cellPos.IsValidCell())
 		return;
 	// TODO: Draw the workshop image in the cell
-	DrawCell(cellPos,UI.CellColor);
+	DrawImageInCell(cellPos,"images\\Workshop.jpg", UI.CellWidth, UI.CellHeight);
 
 
 }
@@ -722,7 +711,9 @@ void Output::DrawDangerZone(const CellPosition& cellPos) const
     ///TODO: Complete the implementation of the following function
 	if (!cellPos.IsValidCell())
 		return;
-	//needs fixing
+
+	pWind->SetPen(UI.CellColor, 1);
+	DrawImageInCell(cellPos, "images\\Danger_Zone.jpg", UI.CellWidth, UI.CellHeight);
 }
 
 void Output::DrawWaterPit(const CellPosition& cellPos) const
@@ -730,15 +721,16 @@ void Output::DrawWaterPit(const CellPosition& cellPos) const
 	///TODO: Complete the implementation of the following function
 	if (!cellPos.IsValidCell())
 		return;
+	pWind->SetPen(UI.CellColor, 1);
 	DrawImageInCell(cellPos,"images\\Water_Pit.jpg",UI.CellWidth,UI.CellHeight);
-	//neeeds fixing 
+	//needs the image to be inside te cell not outside it - done by kelany
 }
 
 
 
 Output::~Output()
 {
-	// deallocating the window object
+	// deallocating the window object	
 	delete pWind;
 }
 
