@@ -351,12 +351,10 @@ int main()
 	// 2- Print it in the status bar in this format: You Entered: 116
 	//    (assuming the entered number is 116)
 	// 3- Call GetPointClicked() function
-	pOut->PrintMessage("Enter an integer");
-	pIn->GetInteger(pOut);
+	pOut->PrintMessage("Enter an Integer");
 	int returnedInteger = pIn->GetInteger(pOut);
-	pOut->PrintMessage("You Entered: ");
+	pOut->PrintMessage("You Entered: " + to_string(returnedInteger));
 	pIn->GetPointClicked(x, y);
-
 	pOut->PrintMessage("FINISHED - (GetInteger) Test, Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
 
@@ -371,6 +369,7 @@ int main()
 	// 2- Print on the status bar the vCell and hCell of the clicked cell
 	// 3- Repeat Step 1 and 2 five times
 
+	pOut->PrintMessage("Click on a cell");
 	for (int i = 0; i < 5; i++) {
 		CellPosition clickedCell = pIn->GetCellClicked();
 		int vCell = clickedCell.VCell();
