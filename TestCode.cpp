@@ -1,6 +1,6 @@
 #include "Input.h"
 #include "Output.h"
-
+#include <iostream>
 //This is a test code to test the Input and Output classes
 
 int main()
@@ -345,15 +345,16 @@ int main()
 	pOut->PrintMessage("3.1- (GetInteger) Test, Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
 
-
+	
 	///TODO: Add code here to 
 	// 1- Call GetInteger Function and receive its returned integer
-	// 2- Print it in the status bar in this format:   You Entered: 116
+	// 2- Print it in the status bar in this format: You Entered: 116
 	//    (assuming the entered number is 116)
 	// 3- Call GetPointClicked() function
-
+	pOut->PrintMessage("Enter an integer");
+	pIn->GetInteger(pOut);
 	int returnedInteger = pIn->GetInteger(pOut);
-	pOut->PrintMessage("You Entered: 116" );
+	pOut->PrintMessage("You Entered: ");
 	pIn->GetPointClicked(x, y);
 
 	pOut->PrintMessage("FINISHED - (GetInteger) Test, Click to continue");
