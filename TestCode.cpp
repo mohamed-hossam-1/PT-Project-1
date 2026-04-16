@@ -355,8 +355,7 @@ int main()
 	int returnedInteger = pIn->GetInteger(pOut);
 
 	pIn->GetPointClicked(x, y);	//Wait for any click
-	pOut->PrintMessage("You Entered: ");
-	pOut->PrintInteger(returnedInteger);
+	pOut->PrintMessage("You Entered: " + to_string(returnedInteger));
 	pIn->GetPointClicked(x, y);
 	pOut->PrintMessage("FINISHED - (GetInteger) Test, Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
