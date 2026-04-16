@@ -31,7 +31,7 @@ bool CellPosition::SetVCell(int v)
 	///TODO: Implement this function as described in the .h file (don't forget the validation)
 	// Mohamed hany added the following if condition which checks that the passed "v"
 	// is in the range of the grid vertical cells (from 0 to NumVerticalCells - 1).
-	if (v >= 1 && v <= NumVerticalCells) 
+	if (v >= 0 && v < NumVerticalCells) 
 	{
 		vCell = v; 
 		return true;
@@ -45,7 +45,7 @@ bool CellPosition::SetHCell(int h)
 {
 	///TODO: Implement this function as described in the .h file (don't forget the validation)
 	// Mohamed Hany added the following if condition for the same purpose as in SetVCell().
-	if (h >= 1 && h <= NumHorizontalCells)
+	if (h >= 0 && h < NumHorizontalCells)
 	{
 		hCell = h;
 		return true;
