@@ -32,15 +32,7 @@ enum ActionType // The actions supported (add more as needed)
 	NEW_GAME,
 	REBOOT_REPAIR,
 	TO_DESIGN_MODE,
-	NO_COMMANDS,
-	FORWARD_ONE_STEP,
-	BACKWARD_ONE_STEP,
-	FORWARD_TWO_STEPS,
-	BACKWARD_TWO_STEPS,
-	BACKWARD_THREE_STEPS,
-	FORWARD_THREE_STEPS,
-	CLOCKWISE,
-	COUNTERCLOCKWISE,
+	
 
 	// Go to Design Mode
 	///TODO: Add more action types of Play Mode
