@@ -792,6 +792,9 @@ void Output::DrawWaterPit(const CellPosition& cellPos) const
 void Output::flushMouseQueue() {
 	pWind->FlushMouseQueue();
 }
+void Output::flushKeyQueue() {
+	pWind->FlushKeyQueue();
+}
 
 Output::~Output()
 {

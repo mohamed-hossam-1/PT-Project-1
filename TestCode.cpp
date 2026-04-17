@@ -394,6 +394,7 @@ int main()
 	// 3- print on the status bar "You Entered" then print the string
 	// NOTE: GetString() is already implemented. It is just required from you to call it
 	pOut->PrintMessage("Enter a String");
+	pOut->flushKeyQueue();
 	string enteredString = pIn->GetString(pOut);
 	pOut->PrintMessage("You Entered: " + enteredString);
 	pIn->GetPointClicked(x, y);
@@ -426,6 +427,7 @@ int main()
 	//This needs to be checked
 	for (int i = 0; i < 5; i++) {
 		CellPosition cellpos_1(0, 0);
+		pOut->flushKeyQueue();
 		pOut->PrintMessage("Enter an integer from 1 to 5");
 		int enteredInteger = pIn->GetInteger(pOut);
 		cellpos_1.SetVCell(enteredInteger-1);
@@ -434,7 +436,6 @@ int main()
 	}
 
 	for (int i = 0; i < 5; i++) {
-		CellPosition cellpos_1(0, 0);
 		pOut->PrintMessage("Enter an integer from 1 to 11");
 		int enteredInteger = pIn->GetInteger(pOut);
 		cellpos_1.SetHCell(enteredInteger-1);
@@ -458,6 +459,7 @@ int main()
 
 	for (int i = 0; i < 5; i++) {
 		pOut->PrintMessage("Enter vCell: ");
+		pOut->flushKeyQueue();
 		int enteredVCell = pIn->GetInteger(pOut);
 		pOut->PrintMessage("Enter hCell: ");
 		int enteredHCell = pIn->GetInteger(pOut);
@@ -490,6 +492,7 @@ int main()
 	// I need to check this again for validation
 	for (int i = 0; i < 5; i++) {
 		pOut->PrintMessage("Enter a cell number as an integer: ");
+		pOut->flushKeyQueue();
 		int enteredCellNum = pIn->GetInteger(pOut); 
 		CellPosition cellPos(enteredCellNum);
 		int vCell = cellPos.VCell();
@@ -517,6 +520,7 @@ int main()
 	for (int i = 0; i < 4; i++) {
 		//User input for cellNum, direction and addedNum
 		pOut->PrintMessage("Enter a cell number as integer: ");
+		pOut->flushKeyQueue();
 		int enteredCellNum = pIn->GetInteger(pOut);
 		pOut->PrintMessage("Enter a direction (0 for Up, 1 for Down, 2 for Right, 3 for Left): ");
 		int direction = pIn->GetInteger(pOut);
