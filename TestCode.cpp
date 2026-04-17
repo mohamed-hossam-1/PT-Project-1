@@ -459,6 +459,7 @@ int main()
 
 	for (int i = 0; i < 5; i++) {
 		pOut->PrintMessage("Enter vCell: ");
+		pOut->flushKeyQueue();
 		int enteredVCell = pIn->GetInteger(pOut);
 		pOut->PrintMessage("Enter hCell: ");
 		int enteredHCell = pIn->GetInteger(pOut);
@@ -491,6 +492,7 @@ int main()
 	// I need to check this again for validation
 	for (int i = 0; i < 5; i++) {
 		pOut->PrintMessage("Enter a cell number as an integer: ");
+		pOut->flushKeyQueue();
 		int enteredCellNum = pIn->GetInteger(pOut); 
 		CellPosition cellPos(enteredCellNum);
 		int vCell = cellPos.VCell();
@@ -517,6 +519,7 @@ int main()
 
 	for (int i = 0; i < 4; i++) {
 		pOut->PrintMessage("Enter a cell number as integer: ");
+		pOut->flushKeyQueue();
 		int enteredCellNum = pIn->GetInteger(pOut);
 		pOut->PrintMessage("Enter a number to add: ");
 		int addedNum = pIn->GetInteger(pOut);
