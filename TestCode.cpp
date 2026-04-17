@@ -396,6 +396,7 @@ int main()
 	// 3- print on the status bar "You Entered" then print the string
 	// NOTE: GetString() is already implemented. It is just required from you to call it
 	pOut->PrintMessage("Enter a String");
+	pOut->flushKeyQueue();
 	string enteredString = pIn->GetString(pOut);
 	pOut->PrintMessage("You Entered: " + enteredString);
 	pIn->GetPointClicked(x, y);
@@ -428,6 +429,7 @@ int main()
 	// are working correctly with the validation of the entered integer
 	//This needs to be checked
 	for (int i = 0; i < 5; i++) {
+		pOut->flushKeyQueue();
 		pOut->PrintMessage("Enter an integer from 1 to 5");
 		int enteredInteger = pIn->GetInteger(pOut);
 		cellpos_1.SetVCell(enteredInteger-1);
@@ -436,6 +438,7 @@ int main()
 	}
 
 	for (int i = 0; i < 5; i++) {
+		pOut->flushKeyQueue();
 		pOut->PrintMessage("Enter an integer from 1 to 11");
 		int enteredInteger = pIn->GetInteger(pOut);
 		cellpos_1.SetHCell(enteredInteger-1);

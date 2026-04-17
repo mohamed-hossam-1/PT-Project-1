@@ -121,6 +121,8 @@ public:
 	// Change the passed cell to make it appears a Water Pit as specified in the document
 	void DrawWaterPit(const CellPosition& cellPos) const;
 	void flushMouseQueue();
+	void Output::flushKeyQueue();
+
 
 	~Output();	// A Destructor for any needed deallocations
 };
