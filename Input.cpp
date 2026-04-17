@@ -166,8 +166,8 @@ CellPosition Input::GetCellClicked() const
 
 		if (y >= UI.ToolBarHeight && y <= (UI.height - UI.CommandsBarHeight))
 		{
-			cellPos.SetHCell((x / UI.CellWidth)+1);
-			cellPos.SetVCell((y - UI.ToolBarHeight / UI.CellHeight)+1);
+			cellPos.SetHCell((x / UI.CellWidth));
+			cellPos.SetVCell((y - UI.ToolBarHeight / UI.CellHeight));
 
 
 			///TODO: SetHCell and SetVCell of the object cellPost appropriately
