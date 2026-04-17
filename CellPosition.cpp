@@ -183,20 +183,10 @@ CellPosition CellPosition::GetCellPositionFromNum(int cellNum)
 }
 
 void CellPosition::AddCellNum(int addedNum, Direction direction)
-{ // 2 
-
-	/*
-	switch (direction) {
-	case UP:
-	{
-
-	}
-	}
-	*/
-
+{ 
 	if (direction==UP && (vCell - addedNum >= 0))
 	{
-		vCell = vCell - addedNum;
+			vCell = vCell - addedNum;
 	}
 	else if(direction == UP){
 		vCell = -1;
@@ -225,8 +215,8 @@ void CellPosition::AddCellNum(int addedNum, Direction direction)
 
 
 	/// TODO: Implement this function as described in the .h file
-	//mohamed hossameldin
-	// Mohamed hany updated this code because it was not working
+
+
 
 	// Note: this function updates the data members (vCell and hCell) of the calling object
 

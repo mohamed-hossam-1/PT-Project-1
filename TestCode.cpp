@@ -369,7 +369,7 @@ int main()
 	// 2- Print on the status bar the vCell and hCell of the clicked cell
 	// 3- Repeat Step 1 and 2 five times
 
-	pOut->PrintMessage("Click on a cell");
+	pOut->PrintMessage("Click on a cell ");
 	pOut->flushMouseQueue();
 	for (int i = 0; i < 5; i++) {
 		pOut->flushMouseQueue();
@@ -378,6 +378,7 @@ int main()
 		int hCell = clickedCell.HCell();
 		pOut->PrintMessage("vertical cell: " + to_string(vCell) + " horizontal cell: " + to_string(hCell));
 	}
+	pIn->GetPointClicked(x, y);
 	pOut->PrintMessage("FINISHED - (GetCellClicked) Test, Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
 
@@ -431,15 +432,16 @@ int main()
 		pOut->PrintMessage("Enter an integer from 1 to 5");
 		int enteredInteger = pIn->GetInteger(pOut);
 		cellpos_1.SetVCell(enteredInteger-1);
-		pOut->PrintMessage("Now the vCell = " + to_string(cellpos_1.VCell() + 1));
+		pOut->PrintMessage("Now the vCell = " + to_string(cellpos_1.VCell() ));
 		pIn->GetPointClicked(x, y);
 	}
 
 	for (int i = 0; i < 5; i++) {
+		CellPosition cellpos_1(0, 0);
 		pOut->PrintMessage("Enter an integer from 1 to 11");
 		int enteredInteger = pIn->GetInteger(pOut);
 		cellpos_1.SetHCell(enteredInteger-1);
-		pOut->PrintMessage("Now the hCell = " + to_string(cellpos_1.HCell() + 1));
+		pOut->PrintMessage("Now the hCell = " + to_string(cellpos_1.HCell() ));
 		pIn->GetPointClicked(x, y);
 	}
 
@@ -462,6 +464,7 @@ int main()
 		pOut->flushKeyQueue();
 		int enteredVCell = pIn->GetInteger(pOut);
 		pOut->PrintMessage("Enter hCell: ");
+		pOut->flushKeyQueue();
 		int enteredHCell = pIn->GetInteger(pOut);
 		CellPosition cellPos(enteredVCell, enteredHCell);
 		int cellNum = cellPos.GetCellNum();
@@ -494,11 +497,18 @@ int main()
 		pOut->PrintMessage("Enter a cell number as an integer: ");
 		pOut->flushKeyQueue();
 		int enteredCellNum = pIn->GetInteger(pOut); 
-		CellPosition cellPos(enteredCellNum);
-		int vCell = cellPos.VCell();
-		int hCell = cellPos.HCell();
-		pOut->PrintMessage("The Cell Position is: vertical cell: " + to_string(vCell + 1) + " horizontal cell: " + to_string(hCell + 1));
-		pIn->GetPointClicked(x, y);
+		if (enteredCellNum<56&&enteredCellNum>=0)
+		{
+			CellPosition cellPos(enteredCellNum);
+			int vCell = cellPos.VCell();
+			int hCell = cellPos.HCell();
+			pOut->PrintMessage("The Cell Position is: vertical cell: " + to_string(vCell) + " horizontal cell: " + to_string(hCell));
+			pIn->GetPointClicked(x, y);
+		}
+		else
+		{
+			pOut->PrintMessage("invalid cell number");
+		}
 	}
 
 	pOut->PrintMessage("FINISHED - (GetCellPositionFromNum) Test, Click to continue");
@@ -580,9 +590,37 @@ int main()
 				//        the one given in the screenshot of project document 
 				pOut->PrintPlayersInfo("P1(2, Right, 10), P2(2, Up, 10) | Curr = P1");
 				break;
-
-
+			case NEW_GAME:
+				pOut->PrintMessage("Action: NEW_GAME , Click anywhere");
+				break;
+			case EMPTY:
+				pOut->PrintMessage("Action: EMPTY , Click anywhere");
+				break;
+			case REBOOT_REPAIR:
+				pOut->PrintMessage("Action: REBOOT_REPAIR , Click anywhere");
+				break;
 				///TODO:  ADD Cases similarly for ALL the remaining actions of DESIGN Mode
+			case EXECUTE_COMMANDS:
+				pOut->PrintMessage("Action: EXECUTE_COMMAND , Click anywhere");
+				break;
+			case SELECT_COMMAND:
+				pOut->PrintMessage("Action: SELECT_COMMAND , Select a command");
+				clickedCommandItemIndex = pIn->GetSelectedCommandIndex();
+				pOut->PrintMessage("Action: SELECTED_COMMAND_NUMBER " + to_string(clickedCommandItemIndex) + " , Click anywhere");
+				break;
+
+			case GRID_AREA:
+				pOut->PrintMessage("Action: GRID_AREA , Click anywhere");
+				break;
+
+			case STATUS:
+				pOut->PrintMessage("Action: STATUS , Click anywhere");
+				break;
+
+			case TO_DESIGN_MODE:
+				pOut->PrintMessage("Action: TO_DESIGN_MODE , Click anywhere");
+				pOut->CreateDesignModeToolBar();
+				break;
 			case ADD_BELT:
 				pOut->PrintMessage("Action: ADD_BELT , Click anywhere");
 				break;
@@ -619,38 +657,8 @@ int main()
 				pOut->PrintMessage("Action: LOAD_GRID , Click anywhere");
 				break;
 
-			case EXECUTE_COMMANDS:
-				pOut->PrintMessage("Action: EXECUTE_COMMAND , Click anywhere");
-				break;
-			case SELECT_COMMAND:
-				pOut->PrintMessage("Action: SELECT_COMMAND , Select a command");
-				clickedCommandItemIndex = pIn->GetSelectedCommandIndex();
-				pOut->PrintMessage("Action: SELECT_COMMAND " + to_string(clickedCommandItemIndex) + " , Click anywhere");
-				break;
-
-			case GRID_AREA:
-				pOut->PrintMessage("Action: GRID_AREA , Click anywhere");
-				break;
-
-			case STATUS:
-				pOut->PrintMessage("Action: STATUS , Click anywhere");
-				break;
-
-			case TO_DESIGN_MODE:
-				pOut->PrintMessage("Action: TO_DESIGN_MODE , Click anywhere");
-				pOut->CreateDesignModeToolBar();
-				break;
-
 				///TODO:  ADD Cases similarly for ALL the remaining actions of PLAY Mode
-					case NEW_GAME:
-						pOut->PrintMessage("Action: NEW_GAME , Click anywhere");
-						break;
-					case EMPTY:
-						pOut->PrintMessage("Action: EMPTY , Click anywhere");
-						break;
-					case REBOOT_REPAIR:
-						pOut->PrintMessage("Action: REBOOT_REPAIR , Click anywhere");
-						break;
+					
 		}
 	}while(ActType != EXIT);
 
