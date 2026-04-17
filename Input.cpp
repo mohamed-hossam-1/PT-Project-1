@@ -83,9 +83,9 @@ ActionType Input::GetUserAction() const
 
 			switch (clickedItemOrder)
 			{
+			case ITM_SWITCH_TO_PLAY_MODE: return TO_PLAY_MODE;
 			case ITM_SET_FLAG_CELL: return SET_FLAG_CELL;
 			case ITM_EXIT: return EXIT;
-			case ITM_SWITCH_TO_PLAY_MODE: return TO_PLAY_MODE;
 			case ITM_ADD_ANTENNA:return ADD_ANTENNA;
 			case ITM_ADD_BELT:return ADD_BELT;
 			case ITM_ADD_WATER:return ADD_WATER;
@@ -126,11 +126,11 @@ ActionType Input::GetUserAction() const
 			int clickedItemOrder = (x / UI.MenuItemWidth);
 
 			switch (clickedItemOrder) {
+			case ITM_SWITCH_TO_DESIGN_MODE :return TO_DESIGN_MODE;
 			case ITM_EXECUTE_COMMANDS: return EXECUTE_COMMANDS;
 			case ITM_SELECT_COMMAND: return SELECT_COMMAND;
 			case ITM_NEW_GAME: return NEW_GAME;
 			case ITM_REBOOT_REPAIR: return REBOOT_REPAIR;
-			case ITM_SWITCH_TO_DESIGN_MODE :return TO_DESIGN_MODE;
 				case ITM_EXIT :return EXIT;
 			}
 

@@ -628,6 +628,9 @@ int main()
 			case  ADD_WATER:
 				pOut->PrintMessage("Action: ADD_WATER , Click anywhere");
 				break;
+			case  ADD_ANTENNA:
+				pOut->PrintMessage("Action: ADD_ANTENNA , Click anywhere");
+				break;
 			case	ADD_DANGER_ZONE:
 				pOut->PrintMessage("Action: ADD_DANGER_ZONE , Click anywhere");
 				break;

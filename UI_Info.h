@@ -48,11 +48,11 @@ enum PLAY_MODE_ITEMS // The items of the Play Mode (you should add more items)
 	// Note: Items are ordered here as they appear in menu
 	// If you want to change the menu items order, change the order here
 
+	ITM_SWITCH_TO_DESIGN_MODE,
 	ITM_EXECUTE_COMMANDS,
 	ITM_SELECT_COMMAND,
-	ITM_NEW_GAME,
 	ITM_REBOOT_REPAIR,
-	ITM_SWITCH_TO_DESIGN_MODE,
+	ITM_NEW_GAME,
 
 	///TODO: Add more items names here
 
