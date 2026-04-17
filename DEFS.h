@@ -31,7 +31,10 @@ enum ActionType // The actions supported (add more as needed)
 	SELECT_COMMAND,		// Select a command from the available ones to be executed
 	NEW_GAME,
 	REBOOT_REPAIR,
-	TO_DESIGN_MODE,	// Go to Design Mode
+	TO_DESIGN_MODE,
+	
+
+	// Go to Design Mode
 	///TODO: Add more action types of Play Mode
 
 	//  [3] Others

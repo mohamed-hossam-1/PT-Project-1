@@ -1,6 +1,6 @@
 #include "Input.h"
 #include "Output.h"
-
+#include <iostream>
 //This is a test code to test the Input and Output classes
 
 int main()
@@ -39,7 +39,7 @@ int main()
 	for (int i = 0; i < 10; i++) {
 		availableCommands[i] = MOVE_FORWARD_ONE_STEP;
 	}
-	pOut->CreateCommandsBar(savedCommands, 8, availableCommands, 10);
+	pOut->CreateCommandsBar(savedCommands, 5, availableCommands, 10);
 	pOut->PrintMessage("1.1.1- Finished Drawing the Command bar in the Game mode, Click to continue");
 
 	pOut->PrintMessage("1.1.2- Testing the Command bar in the Game mode, Click to continue");
@@ -55,10 +55,10 @@ int main()
 			case 1:
 				availableCommands[i] = MOVE_BACKWARD_ONE_STEP;
 				break;
-			case2:
+			case 2:
 				availableCommands[i] = MOVE_FORWARD_TWO_STEPS;
 				break;
-			case3:
+			case 3:
 				availableCommands[i] = MOVE_BACKWARD_TWO_STEPS;
 				break;
 			default:
@@ -66,7 +66,7 @@ int main()
 				
 		}
 	}
-	for (int i = 4; i < 8; i++)
+	for (int i = 0; i < 4; i++)
 		savedCommands[i] = NO_COMMAND;
 	
 	pOut->CreateCommandsBar(savedCommands, 4, availableCommands, 4);
@@ -118,8 +118,7 @@ int main()
 
 	pOut->PrintMessage("1.1.4- Finished Testing the Command bar in the Game mode, Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
-
-
+	
 	///////////////////////////////////////////////////////////////////////////////////
 	// TEST 2:	
 	//			Testing the Output Class
@@ -346,17 +345,18 @@ int main()
 	pOut->PrintMessage("3.1- (GetInteger) Test, Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
 
-
+	
 	///TODO: Add code here to 
 	// 1- Call GetInteger Function and receive its returned integer
-	// 2- Print it in the status bar in this format:   You Entered: 116
+	// 2- Print it in the status bar in this format: You Entered: 116
 	//    (assuming the entered number is 116)
 	// 3- Call GetPointClicked() function
-
+	pOut->PrintMessage("Enter an Integer");
 	int returnedInteger = pIn->GetInteger(pOut);
-	pOut->PrintMessage("You Entered: 116" );
-	pIn->GetPointClicked(x, y);
 
+	pIn->GetPointClicked(x, y);	//Wait for any click
+	pOut->PrintMessage("You Entered: " + to_string(returnedInteger));
+	pIn->GetPointClicked(x, y);
 	pOut->PrintMessage("FINISHED - (GetInteger) Test, Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
 
@@ -371,6 +371,7 @@ int main()
 	// 2- Print on the status bar the vCell and hCell of the clicked cell
 	// 3- Repeat Step 1 and 2 five times
 
+	pOut->PrintMessage("Click on a cell");
 	for (int i = 0; i < 5; i++) {
 		CellPosition clickedCell = pIn->GetCellClicked();
 		int vCell = clickedCell.VCell();
@@ -392,11 +393,10 @@ int main()
 	// 2- After reading the string clear the status bar
 	// 3- print on the status bar "You Entered" then print the string
 	// NOTE: GetString() is already implemented. It is just required from you to call it
-
+	pOut->PrintMessage("Enter a String");
 	string enteredString = pIn->GetString(pOut);
-	pOut->ClearStatusBar();
 	pOut->PrintMessage("You Entered: " + enteredString);
-
+	pIn->GetPointClicked(x, y);
 	pOut->PrintMessage("FINISHED - (GetSrting) Test, Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
 
@@ -502,14 +502,13 @@ int main()
 	// 3- Use the function AddCellNum() to add the addedNum to the cellNum
 	// 4- Print the vCell and hCell of the new Cell Position on the status bar
 	// 5- Repeat the above steps Four TIMES with each time a different direction
-
-	// I need to recheck this
-	// The for loop needs validation
+	Direction dir[4] = { UP,DOWN,RIGHT,LEFT };
 	for (int i = 0; i < 4; i++) {
 		pOut->PrintMessage("Enter a cell number and a number to add to it as two integers");
 		int enteredCellNum = pIn->GetInteger(pOut);
 		int addedNum = pIn->GetInteger(pOut);
 		CellPosition cellPos(enteredCellNum);
+		cellPos.AddCellNum(addedNum, dir[i]);
 		int vCell = cellPos.VCell();
 		int hCell = cellPos.HCell();
 		pOut->PrintMessage("The new Cell Position is: vertical cell: " + to_string(vCell) + " horizontal cell: " + to_string(hCell));
@@ -541,10 +540,10 @@ int main()
 			case SET_FLAG_CELL:
 				pOut->PrintMessage("Action: SET_FLAG_CELL , Click anywhere");
 				break;
-		
-
-			case EXIT:				
-				break;
+		         
+			
+				case EXIT:				
+					break;
 
 			case TO_PLAY_MODE:
 
@@ -553,11 +552,46 @@ int main()
 
 				///TODO:  Call Function (PrintPlayersInfo) of Class Output with a string similar to 
 				//        the one given in the screenshot of project document 
-
+				pOut->PrintPlayersInfo("P1(2, Right, 10), P2(2, Up, 10) | Curr = P1");
 				break;
 
 
 				///TODO:  ADD Cases similarly for ALL the remaining actions of DESIGN Mode
+			case ADD_BELT:
+				pOut->PrintMessage("Action: ADD_BELT , Click anywhere");
+				break;
+
+			case  ADD_WATER:
+				pOut->PrintMessage("Action: ADD_WATER , Click anywhere");
+				break;
+			case	ADD_DANGER_ZONE:
+				pOut->PrintMessage("Action: ADD_DANGER_ZONE , Click anywhere");
+				break;
+			case ADD_WORKSHOP:
+				pOut->PrintMessage("Action: ADD_WORKSHOP , Click anywhere");
+				break;
+
+			case ADD_ROTATING_GEAR:
+				pOut->PrintMessage("Action: ADD_ROTATING_GEAR , Click anywhere");
+				break;
+			case COPY_OBJECT:
+				pOut->PrintMessage("Action: COPY_OBJECT , Click anywhere");
+				break;
+			case CUT_OBJECT:
+				pOut->PrintMessage("Action: CUT_OBJECT, Click anywhere");
+				break;
+			case PASTE_OBJECT:
+				pOut->PrintMessage("Action: PASTE_OBJECT , Click anywhere");
+				break;
+			case DELETE_OBJECT:
+				pOut->PrintMessage("Action: DELETE OBJECT, Click anywhere");
+				break;
+			case SAVE_GRID:
+				pOut->PrintMessage("Action: SAVE_GRID , Click anywhere");
+				break;
+			case LOAD_GRID:
+				pOut->PrintMessage("Action: LOAD_GRID , Click anywhere");
+				break;
 
 			case EXECUTE_COMMANDS:
 				pOut->PrintMessage("Action: EXECUTE_COMMAND , Click anywhere");
@@ -582,7 +616,15 @@ int main()
 				break;
 
 				///TODO:  ADD Cases similarly for ALL the remaining actions of PLAY Mode
-
+					case NEW_GAME:
+						pOut->PrintMessage("Action: NEW_GAME , Click anywhere");
+						break;
+					case EMPTY:
+						pOut->PrintMessage("Action: EMPTY , Click anywhere");
+						break;
+					case REBOOT_REPAIR:
+						pOut->PrintMessage("Action: REBOOT_REPAIR , Click anywhere");
+						break;
 		}
 	}while(ActType != EXIT);
 
