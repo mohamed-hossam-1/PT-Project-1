@@ -336,11 +336,10 @@ void Output::CreatePlayModeToolBar() const
 	MenuItemImages[ITM_SWITCH_TO_DESIGN_MODE] = "images\\Menu_SwitchToGrid.jpg";
 
 	///TODO: Change the path of the images as needed
-	MenuItemImages[ITM_EXECUTE_COMMANDS] = "images\\Menu_Dice.jpg";
-	MenuItemImages[ITM_SELECT_COMMAND] = "images\\Menu_Dice.jpg";
-	/*MenuItemImages[ITM_NEW_GAME] = "images\\";
-	MenuItemImages[ITM_SWITCH_TO_DESIGN_MODE] = "images\\";
-	MenuItemImages[ITM_REBOOT_REPAIR] = "images\\";*/
+	MenuItemImages[ITM_EXECUTE_COMMANDS] = "images\\Execute_Commands.jpg";
+	MenuItemImages[ITM_SELECT_COMMAND] = "images\\Select_Commands.jpg";
+	MenuItemImages[ITM_NEW_GAME] = "images\\New_Game.jpg";
+	MenuItemImages[ITM_REBOOT_REPAIR] = "images\\Reboot_Repair.jpg";
 
 
 	///TODO: Prepare images for each menu item and add it to the list
