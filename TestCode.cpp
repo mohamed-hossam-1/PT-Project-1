@@ -524,7 +524,7 @@ int main()
 	// 5- Repeat the above steps Four TIMES with each time a different direction
 	Direction dir[4] = { UP,DOWN,RIGHT,LEFT };
 
-	// Upward direction:
+	
 	for (int i = 0; i < 4; i++) {
 		//User input for cellNum, direction and addedNum
 		pOut->PrintMessage("Enter a cell number as integer: ");
@@ -532,7 +532,7 @@ int main()
 		int enteredCellNum = pIn->GetInteger(pOut);
 		pOut->PrintMessage("Enter a direction (0 for Up, 1 for Down, 2 for Right, 3 for Left): ");
 		int direction = pIn->GetInteger(pOut);
-		//check this part pls
+		
 		if (direction < 0 || direction>3) {
 			pOut->PrintMessage("enter a number from 0 to 3");
 		}
