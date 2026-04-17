@@ -564,8 +564,8 @@ int main()
 				break;
 		         
 			
-				case EXIT:				
-					break;
+			case EXIT:				
+				break;
 
 			case TO_PLAY_MODE:
 
