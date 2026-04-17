@@ -535,6 +535,7 @@ int main()
 		
 		if (direction < 0 || direction>3) {
 			pOut->PrintMessage("enter a number from 0 to 3");
+			pIn->GetPointClicked(x, y);
 		}
 		else {
 			pOut->PrintMessage("Enter a number to add: ");
