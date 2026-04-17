@@ -515,17 +515,25 @@ int main()
 	// Upward direction:
 
 	for (int i = 0; i < 4; i++) {
+		//User input for cellNum, direction and addedNum
 		pOut->PrintMessage("Enter a cell number as integer: ");
 		int enteredCellNum = pIn->GetInteger(pOut);
-		pOut->PrintMessage("Enter a number to add: ");
-		int addedNum = pIn->GetInteger(pOut);
 		pOut->PrintMessage("Enter a direction (0 for Up, 1 for Down, 2 for Right, 3 for Left): ");
 		int direction = pIn->GetInteger(pOut);
+		pOut->PrintMessage("Enter a number to add: ");
+		int addedNum = pIn->GetInteger(pOut);
+		
+		
 		CellPosition cellPos(enteredCellNum);
 		cellPos.AddCellNum(addedNum, dir[direction]);
 		int vCell = cellPos.VCell();
 		int hCell = cellPos.HCell();
-		pOut->PrintMessage("The new Cell Position is: vertical cell: " + to_string(vCell) + " horizontal cell: " + to_string(hCell));
+		if (vCell == -1 || hCell == -1) {
+			pOut->PrintMessage("Invalid Cell Position after adding");
+		}
+		else {
+			pOut->PrintMessage("The new Cell Position is: vertical cell: " + to_string(vCell) + " horizontal cell: " + to_string(hCell));
+		}
 		pIn->GetPointClicked(x, y);
 	}
 
