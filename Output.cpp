@@ -611,11 +611,11 @@ void Output::DrawBelt(const CellPosition& fromCellPos, const CellPosition& toCel
 	int toCellStartX = GetCellStartX(toCellPos);
 	int toCellStartY = GetCellStartY(toCellPos);
 
-	int beltFromCellX = fromCellStartX + (UI.CellWidth / 2) ;
-	int beltToCellX = toCellStartX + (UI.CellWidth / 2) ;
+	int beltFromCellX = fromCellStartX + UI.BeltXOffset ;
+	int beltToCellX = toCellStartX+UI.BeltXOffset;
 
 	int beltFromCellY = fromCellStartY + UI.BeltYOffset;
-	int beltToCellY = toCellStartY + UI.BeltYOffset;
+	int beltToCellY = toCellStartY+UI.BeltYOffset ;
 
 	// TODO: Draw the belt line and the triangle at the center of the line pointing to the direction of the belt
 

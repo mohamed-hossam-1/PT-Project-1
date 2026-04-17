@@ -257,7 +257,7 @@ int main()
 	CellPosition belt_start_2(12);
 	CellPosition belt_end_2(45);
 	CellPosition belt_start_3(54);
-	CellPosition belt_end_3(32);
+	CellPosition belt_end_3(55);
 	CellPosition belt_end_4(33);
 
 	// TODO: Draw 5 belts
