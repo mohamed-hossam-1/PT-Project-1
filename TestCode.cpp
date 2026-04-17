@@ -516,7 +516,6 @@ int main()
 
 	pOut->PrintMessage("4.4- (AddCellNum) Test, Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
-
 	/// TODO:
 	// 1- Read from user two integers representing cellNum and addedNum
 	// 2- Creates a CellPosition object of cellNum
@@ -526,7 +525,6 @@ int main()
 	Direction dir[4] = { UP,DOWN,RIGHT,LEFT };
 
 	// Upward direction:
-
 	for (int i = 0; i < 4; i++) {
 		//User input for cellNum, direction and addedNum
 		pOut->PrintMessage("Enter a cell number as integer: ");
@@ -534,26 +532,31 @@ int main()
 		int enteredCellNum = pIn->GetInteger(pOut);
 		pOut->PrintMessage("Enter a direction (0 for Up, 1 for Down, 2 for Right, 3 for Left): ");
 		int direction = pIn->GetInteger(pOut);
-		pOut->PrintMessage("Enter a number to add: ");
-		int addedNum = pIn->GetInteger(pOut);
-		
-		
-		CellPosition cellPos(enteredCellNum);
-		cellPos.AddCellNum(addedNum, dir[direction]);
-		int vCell = cellPos.VCell();
-		int hCell = cellPos.HCell();
-		if (vCell == -1 || hCell == -1) {
-			pOut->PrintMessage("Invalid Cell Position after adding");
+		if (direction < 0 || direction>3) {
+			pOut->PrintMessage("enter a number from 0 to 3");
 		}
 		else {
-			pOut->PrintMessage("The new Cell Position is: vertical cell: " + to_string(vCell) + " horizontal cell: " + to_string(hCell));
+			pOut->PrintMessage("Enter a number to add: ");
+			int addedNum = pIn->GetInteger(pOut);
+
+
+			CellPosition cellPos(enteredCellNum);
+			cellPos.AddCellNum(addedNum, dir[direction]);
+			int vCell = cellPos.VCell();
+			int hCell = cellPos.HCell();
+			if (vCell == -1 || hCell == -1) {
+				pOut->PrintMessage("Invalid Cell Position after adding");
+			}
+			else {
+				pOut->PrintMessage("The new Cell Position is: vertical cell: " + to_string(vCell) + " horizontal cell: " + to_string(hCell));
+			}
+			pIn->GetPointClicked(x, y);
 		}
-		pIn->GetPointClicked(x, y);
 	}
 
-	pOut->PrintMessage("FINISHED - (AddCellNum) Test, Click to continue");
-	pIn->GetPointClicked(x, y);	//Wait for any click
-
+		pOut->PrintMessage("FINISHED - (AddCellNum) Test, Click to continue");
+		pIn->GetPointClicked(x, y);	//Wait for any click
+		
 
 	///////////////////////////////////////////////////////////////////////////////////
 	// TEST 5: 
