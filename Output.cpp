@@ -17,8 +17,8 @@ Output::Output()
 	UI.ToolBarHeight = 65;
 	UI.MenuItemWidth = 65;
 
-	UI.width = 1210; // make it divisible by NumHorizontalCells
-	UI.height = 627; 
+	UI.width = 1.2*1210; // make it divisible by NumHorizontalCells
+	UI.height = 1.2*627; 
 	UI.wx = 5;
 	UI.wy = 5;
 
@@ -40,7 +40,8 @@ Output::Output()
 	UI.CellColor = BENTENGRAY;
 	UI.CellNumFont = 14;
 	UI.CellNumColor = UI.GridLineColor;
-
+	UI.WaterPitsCellColor = NAVYBLUE;
+	UI.DangerZoneCellColor = RED;
 
 	// Belt Line Width and Color
 	UI.BeltLineWidth = 6;
@@ -51,17 +52,17 @@ Output::Output()
 	UI.BeltYOffset = (UI.CellHeight / 4) * 3;
 
 	// Flag and Flag Pole Colors
-	UI.FlagPoleWidth = 100;
+	UI.FlagPoleWidth = 20;
 	UI.FlagPoleHeight = UI.CellHeight / 2;
 	UI.FlagWidth = UI.CellWidth / 4;
 	UI.FlagHeight = UI.FlagPoleHeight / 2;
 
-	UI.FlagColor = BENTENGOLD;
+	UI.FlagColor = CYAN;
 	UI.FlagPoleColor = BENTENLIME;
 
 
 	// Commands X and Y Coordinates
-	UI.SpaceBetweenCommandsSlots = 10;
+	UI.SpaceBetweenCommandsSlots = 8;
 	UI.AvailableCommandsXOffset = ( UI.CommandItemWidth + UI.SpaceBetweenCommandsSlots ) * 6;
 
 
@@ -297,16 +298,13 @@ void Output::CreateDesignModeToolBar() const
 	MenuItemImages[ITM_ADD_DANGER_ZONE] = "images\\Add_Danger_Zone.jpg";
 	MenuItemImages[ITM_ADD_WORKSHOP] = "images\\Add_Workshop.jpg";
 	MenuItemImages[ITM_ADD_ROTATING_GEAR] = "images\\Add_Gear.jpg";
+	MenuItemImages[ITM_COPY_OBJECT] = "images\\Copy_Object.jpg";
+	MenuItemImages[ITM_CUT_OBJECT] = "images\\Cut_Object.jpg";
+	MenuItemImages[ITM_PASTE_OBJECT] = "images\\Paste_Object.jpg";
+	MenuItemImages[ITM_DELETE_OBJECT] = "images\\Delete_Object.jpg";
+	MenuItemImages[ITM_SAVE_GRID] = "images\\Save_Grid.jpg";
+	MenuItemImages[ITM_LOAD_GRID] = "images\\Load_Grid.jpg";
 	
-	
-	/*
-	MenuItemImages[ITM_COPY_OBJECT] = "images\\";
-	MenuItemImages[ITM_CUT_OBJECT] = "images\\";
-	MenuItemImages[ITM_PASTE_OBJECT] = "images\\";
-	MenuItemImages[ITM_DELETE_OBJECT] = "images\\";
-	MenuItemImages[ITM_SAVE_GRID] = "images\\";
-	MenuItemImages[ITM_LOAD_GRID] = "images\\";
-	*/
 	///TODO: Prepare images for each menu item and add it to the list
 	MenuItemImages[ITM_EXIT] = "images\\Menu_Exit.jpg";
 
@@ -339,11 +337,10 @@ void Output::CreatePlayModeToolBar() const
 	MenuItemImages[ITM_SWITCH_TO_DESIGN_MODE] = "images\\Menu_SwitchToGrid.jpg";
 
 	///TODO: Change the path of the images as needed
-	MenuItemImages[ITM_EXECUTE_COMMANDS] = "images\\Menu_Dice.jpg";
-	MenuItemImages[ITM_SELECT_COMMAND] = "images\\Menu_Dice.jpg";
-	/*MenuItemImages[ITM_NEW_GAME] = "images\\";
-	MenuItemImages[ITM_SWITCH_TO_DESIGN_MODE] = "images\\";
-	MenuItemImages[ITM_REBOOT_REPAIR] = "images\\";*/
+	MenuItemImages[ITM_EXECUTE_COMMANDS] = "images\\Execute_Commands.jpg";
+	MenuItemImages[ITM_SELECT_COMMAND] = "images\\Select_Commands.jpg";
+	MenuItemImages[ITM_NEW_GAME] = "images\\New_Game.jpg";
+	MenuItemImages[ITM_REBOOT_REPAIR] = "images\\Reboot_Repair.jpg";
 
 
 	///TODO: Prepare images for each menu item and add it to the list
@@ -659,8 +656,8 @@ void Output::DrawFlag(const CellPosition& cellPos) const
 	// TODO: Draw the flag as a line with a triangle connected to it directed to right
 
 	// TODO: 1. Draw the flag pole (the line)
-	int flagPoleStartX = cellStartX + UI.CellWidth / 2;
-	int flagPoleStartY = cellStartY + UI.ToolBarHeight + UI.CellHeight / 10;
+	int flagPoleStartX = cellStartX-UI.CellWidth/2;
+	int flagPoleStartY = cellStartY + 3*UI.CellHeight/4 ;
 	int flagCenterY = flagPoleStartY -(UI.FlagPoleHeight - UI.FlagWidth / 2);
 	int flagCenterX = flagPoleStartX + UI.FlagHeight / 2;
 
@@ -678,11 +675,11 @@ void Output::DrawRotatingGear(const CellPosition& cellPos, bool clockwise) const
 		//image required
 	if (clockwise == true) {
 		pWind->SetPen(UI.CellColor, 1);
-		DrawImageInCell(cellPos, "images\\Clockwise_Gear.jpg", UI.CellWidth, UI.CellHeight);//requires the cw version of the image
+		DrawImageInCell(cellPos, "images\\Clockwise_Gear.jpg", UI.CellWidth/2, UI.CellHeight/2);//requires the cw version of the image
 	}
 	else {
 		pWind->SetPen(UI.CellColor, 1);
-		DrawImageInCell(cellPos, "images\\Counter_Clockwise_Gear.jpg", UI.CellWidth, UI.CellHeight);//requires the ccw version of the image
+		DrawImageInCell(cellPos, "images\\Counter_Clockwise_Gear.jpg", UI.CellWidth/2, UI.CellHeight/2);//requires the ccw version of the image
 	}
 }
 
@@ -693,7 +690,7 @@ void Output::DrawAntenna(const CellPosition& cellPos) const
 		return;
 	// TODO: Draw the antenna image in the cell
 	pWind->SetPen(UI.CellColor, 1);
-	DrawImageInCell(cellPos, "images\\Antenna.jpg", UI.CellWidth, UI.CellHeight);
+	DrawImageInCell(cellPos, "images\\Antenna.jpg", UI.CellWidth/2, UI.CellHeight/2);
 	
 	
 }
@@ -706,7 +703,7 @@ void Output::DrawWorkshop(const CellPosition& cellPos) const
 	if (!cellPos.IsValidCell())
 		return;
 	// TODO: Draw the workshop image in the cell
-	DrawImageInCell(cellPos,"images\\Workshop.jpg", UI.CellWidth, UI.CellHeight);
+	DrawImageInCell(cellPos,"images\\Workshop.jpg", UI.CellWidth/2, UI.CellHeight/2);
 
 
 }
@@ -714,11 +711,44 @@ void Output::DrawWorkshop(const CellPosition& cellPos) const
 void Output::DrawDangerZone(const CellPosition& cellPos) const
 {
     ///TODO: Complete the implementation of the following function
-	if (!cellPos.IsValidCell())
+	/*if (!cellPos.IsValidCell())
 		return;
 
 	pWind->SetPen(UI.CellColor, 1);
-	DrawImageInCell(cellPos, "images\\Danger_Zone.jpg", UI.CellWidth, UI.CellHeight);
+	DrawImageInCell(cellPos, "images\\Danger_Zone.jpg", UI.CellWidth/2, UI.CellHeight/2);
+	*/
+	if (!cellPos.IsValidCell())
+		return;
+	int ix = GetCellStartX(cellPos);
+	int iy = GetCellStartY(cellPos);
+	int ix2 = ix + UI.CellWidth;
+	int iy2 = iy + UI.CellHeight;
+	pWind->SetPen(UI.CellColor, 1);
+	pWind->SetBrush(UI.DangerZoneCellColor);
+	pWind->DrawRectangle(ix, iy, ix2, iy2, FILLED);
+	int cp = cellPos.GetCellNum();
+	int w = 0, h = 0;
+	pWind->SetPen(UI.GridLineColor, 1);
+	pWind->DrawRectangle(ix, iy, ix2, iy2, FRAME);
+	pWind->SetPen(UI.CellNumColor);
+	pWind->SetFont(UI.CellNumFont, BOLD, BY_NAME, "Verdana");
+
+	///TODO: Get the Width and Height of the Cell Number if written using the current font 
+	//       (Use GetIntegerSize() window function) and set the "w" and "h" variables with its width and height
+
+	pWind->GetIntegerSize(w, h, cp);
+
+
+	// Calculate X & Y coordinate of the start point of writing the card number (upper left point of the cell num)
+	int x = ix + (UI.CellWidth - w - 1);   // space 1 from the end of the cell width
+	// ( - w ) because x is for the start point of cell num (num's left corner)
+	int y = iy + (UI.CellHeight - h - 1);  // space 1 from the end of the cell height
+	// ( - w ) because y is for the start point of cell num (num's upper corner)
+
+///TODO: Draw the cell number in the x and y location
+
+	pWind->DrawInteger(x, y, cp);
+
 }
 
 void Output::DrawWaterPit(const CellPosition& cellPos) const
@@ -726,12 +756,42 @@ void Output::DrawWaterPit(const CellPosition& cellPos) const
 	///TODO: Complete the implementation of the following function
 	if (!cellPos.IsValidCell())
 		return;
+	int ix = GetCellStartX(cellPos);
+	int iy = GetCellStartY(cellPos);
+	int ix2 = ix + UI.CellWidth;
+	int iy2 = iy + UI.CellHeight;
 	pWind->SetPen(UI.CellColor, 1);
-	DrawImageInCell(cellPos,"images\\Water_Pit.jpg",UI.CellWidth,UI.CellHeight);
+	pWind->SetBrush(UI.WaterPitsCellColor);
+	pWind->DrawRectangle(ix, iy, ix2, iy2, FILLED);
+	int cp = cellPos.GetCellNum();
+	int w = 0, h = 0;
+	pWind->SetPen(UI.GridLineColor, 1);
+	pWind->DrawRectangle(ix, iy, ix2, iy2, FRAME);
+	pWind->SetPen(UI.CellNumColor);
+	pWind->SetFont(UI.CellNumFont, BOLD, BY_NAME, "Verdana");
+
+	///TODO: Get the Width and Height of the Cell Number if written using the current font 
+	//       (Use GetIntegerSize() window function) and set the "w" and "h" variables with its width and height
+
+	pWind->GetIntegerSize(w, h, cp);
+
+
+	// Calculate X & Y coordinate of the start point of writing the card number (upper left point of the cell num)
+	int x = ix + (UI.CellWidth - w - 1);   // space 1 from the end of the cell width
+	// ( - w ) because x is for the start point of cell num (num's left corner)
+	int y = iy + (UI.CellHeight - h - 1);  // space 1 from the end of the cell height
+	// ( - w ) because y is for the start point of cell num (num's upper corner)
+
+///TODO: Draw the cell number in the x and y location
+
+	pWind->DrawInteger(x, y, cp);
+
 	//needs the image to be inside te cell not outside it - done by kelany
 }
 
-
+void Output::flushMouseQueue() {
+	pWind->FlushMouseQueue();
+}
 
 Output::~Output()
 {

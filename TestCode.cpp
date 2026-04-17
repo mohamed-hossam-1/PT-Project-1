@@ -370,7 +370,9 @@ int main()
 	// 3- Repeat Step 1 and 2 five times
 
 	pOut->PrintMessage("Click on a cell");
+	pOut->flushMouseQueue();
 	for (int i = 0; i < 5; i++) {
+		pOut->flushMouseQueue();
 		CellPosition clickedCell = pIn->GetCellClicked();
 		int vCell = clickedCell.VCell();
 		int hCell = clickedCell.HCell();
