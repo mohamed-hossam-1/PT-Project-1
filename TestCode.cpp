@@ -532,14 +532,13 @@ int main()
 		int enteredCellNum = pIn->GetInteger(pOut);
 		pOut->PrintMessage("Enter a direction (0 for Up, 1 for Down, 2 for Right, 3 for Left): ");
 		int direction = pIn->GetInteger(pOut);
+		//check this part pls
 		if (direction < 0 || direction>3) {
 			pOut->PrintMessage("enter a number from 0 to 3");
 		}
 		else {
 			pOut->PrintMessage("Enter a number to add: ");
 			int addedNum = pIn->GetInteger(pOut);
-
-
 			CellPosition cellPos(enteredCellNum);
 			cellPos.AddCellNum(addedNum, dir[direction]);
 			int vCell = cellPos.VCell();
