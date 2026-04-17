@@ -503,6 +503,8 @@ int main()
 	// 4- Print the vCell and hCell of the new Cell Position on the status bar
 	// 5- Repeat the above steps Four TIMES with each time a different direction
 
+	// I need to recheck this
+	// The for loop needs validation
 	for (int i = 0; i < 4; i++) {
 		pOut->PrintMessage("Enter a cell number and a number to add to it as two integers");
 		int enteredCellNum = pIn->GetInteger(pOut);
