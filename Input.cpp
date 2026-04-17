@@ -1,5 +1,5 @@
 #include "Input.h"
-//moahmed hany is black
+
 #include "Output.h"
 //======================================================================================//
 //								General Functions									    //
@@ -51,7 +51,7 @@ int Input::GetInteger(Output *pO) const
 	///TODO: implement the GetInteger function as described in Input.h file 
 	//       using function GetString() defined above and function stoi()
 
-	//mohamed hossam
+	
 
 	// Note: stoi(s) converts string s into its equivalent integer (for example, "55" is converted to 55)
 
@@ -99,7 +99,7 @@ ActionType Input::GetUserAction() const
 			case ITM_SAVE_GRID:return SAVE_GRID;
 			case ITM_LOAD_GRID:return LOAD_GRID;
 				///TODO: Add cases for the other items of Design Mode
-			//mohamed hossam
+			
 
 
 

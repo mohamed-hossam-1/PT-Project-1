@@ -194,51 +194,39 @@ void CellPosition::AddCellNum(int addedNum, Direction direction)
 	}
 	*/
 
-	if (direction==UP)
+	if (direction==UP && (vCell - addedNum >= 0))
 	{
-		for (int i = 0; i < addedNum; i++)
-		{
-			while (vCell != 0)
-			{
-				vCell -= 1;
-			}
-		}
-
+		vCell = vCell - addedNum;
 	}
-	else if (direction == DOWN)
-	{
-		for (int i = 0; i < addedNum; i++)
-		{
-			while (vCell != 4)
-			{
-				vCell += 1;
-			}
-		}
+	else if(direction == UP){
+		vCell = -1;
 	}
-	else if (direction == RIGHT)
+	else if (direction == DOWN && (vCell + addedNum <= 4))
 	{
-		for (int i = 0; i < addedNum; i++)
-		{
-			while (hCell != 11)
-			{
-				hCell += 1;
-			}
-		}
+		vCell = vCell + addedNum;
 	}
-	else if (direction == LEFT )
+	else if (direction == DOWN) {
+		vCell = -1;
+	}
+	else if (direction == RIGHT && (hCell + addedNum <= 10))
 	{
-		for (int i = 0; i < addedNum; i++)
-		{
-			while (hCell != 0)
-			{
-				hCell -= 1;
-			}
-		}
+		hCell = hCell + addedNum;
+	}
+	else if (direction == RIGHT) {
+		hCell = -1;
+	}
+	else if (direction == LEFT && (hCell - addedNum >= 0))
+	{
+		hCell = hCell - addedNum;
+	}
+	else if (direction == LEFT) {
+		hCell = -1;
 	}
 
 
 	/// TODO: Implement this function as described in the .h file
 	//mohamed hossameldin
+	// Mohamed hany updated this code because it was not working
 
 	// Note: this function updates the data members (vCell and hCell) of the calling object
 
