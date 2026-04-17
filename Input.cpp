@@ -164,10 +164,11 @@ CellPosition Input::GetCellClicked() const
 	if (UI.InterfaceMode == MODE_DESIGN)
 	{
 
-		if (y >= UI.ToolBarHeight && y <= (UI.height - UI.CommandsBarHeight))
+		if (y >= UI.ToolBarHeight && y <= (UI.height - (UI.CommandsBarHeight+UI.StatusBarHeight)))
 		{
 			cellPos.SetHCell((x / UI.CellWidth));
-			cellPos.SetVCell((y - UI.ToolBarHeight / UI.CellHeight));
+			y = (y - UI.ToolBarHeight) / UI.CellHeight;
+			cellPos.SetVCell(y);
 
 
 			///TODO: SetHCell and SetVCell of the object cellPost appropriately
@@ -182,10 +183,12 @@ CellPosition Input::GetCellClicked() const
 	if (UI.InterfaceMode == MODE_PLAY)
 	{
 
-		if (y >= UI.ToolBarHeight && y <= (UI.height - UI.CommandsBarHeight))
+		if (y >= UI.ToolBarHeight && y <= (UI.height - (UI.CommandsBarHeight + UI.StatusBarHeight)))
 		{
+
 			cellPos.SetHCell(x / UI.CellWidth);
-			cellPos.SetVCell(y-UI.ToolBarHeight / UI.CellHeight);
+			y = (y - UI.ToolBarHeight) / UI.CellHeight;
+			cellPos.SetVCell(y);
 
 		}
 		else {

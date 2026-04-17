@@ -353,8 +353,6 @@ int main()
 	// 3- Call GetPointClicked() function
 	pOut->PrintMessage("Enter an Integer");
 	int returnedInteger = pIn->GetInteger(pOut);
-
-	pIn->GetPointClicked(x, y);	//Wait for any click
 	pOut->PrintMessage("You Entered: " + to_string(returnedInteger));
 	pIn->GetPointClicked(x, y);
 	pOut->PrintMessage("FINISHED - (GetInteger) Test, Click to continue");
@@ -414,7 +412,6 @@ int main()
 	pOut->PrintMessage("4.1- (Setters with Validation) Test, Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
 
-	CellPosition cellpos_1(0, 0);
 
 	///TODO:
 	// 1- Ask user to enter an integer and read it using GetInteger()
@@ -429,20 +426,20 @@ int main()
 	// are working correctly with the validation of the entered integer
 	//This needs to be checked
 	for (int i = 0; i < 5; i++) {
+		CellPosition cellpos_1(0, 0);
 		pOut->flushKeyQueue();
 		pOut->PrintMessage("Enter an integer from 1 to 5");
 		int enteredInteger = pIn->GetInteger(pOut);
 		cellpos_1.SetVCell(enteredInteger-1);
-		pOut->PrintMessage("Now the vCell = " + to_string(cellpos_1.VCell()));
+		pOut->PrintMessage("Now the vCell = " + to_string(cellpos_1.VCell() + 1));
 		pIn->GetPointClicked(x, y);
 	}
 
 	for (int i = 0; i < 5; i++) {
-		pOut->flushKeyQueue();
 		pOut->PrintMessage("Enter an integer from 1 to 11");
 		int enteredInteger = pIn->GetInteger(pOut);
 		cellpos_1.SetHCell(enteredInteger-1);
-		pOut->PrintMessage("Now the hCell = " + to_string(cellpos_1.HCell()));
+		pOut->PrintMessage("Now the hCell = " + to_string(cellpos_1.HCell() + 1));
 		pIn->GetPointClicked(x, y);
 	}
 
@@ -461,12 +458,19 @@ int main()
 	// 5- Repeat the above steps Five TIMES
 
 	for (int i = 0; i < 5; i++) {
-		pOut->PrintMessage("Enter vCell and hCell as two integers");
+		pOut->PrintMessage("Enter vCell: ");
 		int enteredVCell = pIn->GetInteger(pOut);
+		pOut->PrintMessage("Enter hCell: ");
 		int enteredHCell = pIn->GetInteger(pOut);
 		CellPosition cellPos(enteredVCell, enteredHCell);
 		int cellNum = cellPos.GetCellNum();
-		pOut->PrintMessage("The Cell Number is: " + to_string(cellNum));
+		if (cellNum != -1) {
+			pOut->PrintMessage("The Cell Number is: " + to_string(cellNum));
+		}
+		else {
+			pOut->PrintMessage("Invalid Cell Position");
+		}
+		
 		pIn->GetPointClicked(x, y);
 	}
 
@@ -486,12 +490,12 @@ int main()
 
 	// I need to check this again for validation
 	for (int i = 0; i < 5; i++) {
-		pOut->PrintMessage("Enter a cell number as an integer");
+		pOut->PrintMessage("Enter a cell number as an integer: ");
 		int enteredCellNum = pIn->GetInteger(pOut); 
 		CellPosition cellPos(enteredCellNum);
 		int vCell = cellPos.VCell();
 		int hCell = cellPos.HCell();
-		pOut->PrintMessage("The Cell Position is: vertical cell: " + to_string(vCell) + " horizontal cell: " + to_string(hCell));
+		pOut->PrintMessage("The Cell Position is: vertical cell: " + to_string(vCell + 1) + " horizontal cell: " + to_string(hCell + 1));
 		pIn->GetPointClicked(x, y);
 	}
 
@@ -508,12 +512,18 @@ int main()
 	// 4- Print the vCell and hCell of the new Cell Position on the status bar
 	// 5- Repeat the above steps Four TIMES with each time a different direction
 	Direction dir[4] = { UP,DOWN,RIGHT,LEFT };
+
+	// Upward direction:
+
 	for (int i = 0; i < 4; i++) {
-		pOut->PrintMessage("Enter a cell number and a number to add to it as two integers");
+		pOut->PrintMessage("Enter a cell number as integer: ");
 		int enteredCellNum = pIn->GetInteger(pOut);
+		pOut->PrintMessage("Enter a number to add: ");
 		int addedNum = pIn->GetInteger(pOut);
+		pOut->PrintMessage("Enter a direction (0 for Up, 1 for Down, 2 for Right, 3 for Left): ");
+		int direction = pIn->GetInteger(pOut);
 		CellPosition cellPos(enteredCellNum);
-		cellPos.AddCellNum(addedNum, dir[i]);
+		cellPos.AddCellNum(addedNum, dir[direction]);
 		int vCell = cellPos.VCell();
 		int hCell = cellPos.HCell();
 		pOut->PrintMessage("The new Cell Position is: vertical cell: " + to_string(vCell) + " horizontal cell: " + to_string(hCell));

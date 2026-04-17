@@ -113,10 +113,11 @@ int CellPosition::GetCellNumFromPosition(const CellPosition & cellPosition)
 	case 3:
 		cellNumber = 12 + horizontalCell;
 		break;
-	default:
+	case 4:
 		cellNumber = 1 + horizontalCell;
 		break;
-
+	default:
+		return -1; // This means that the cell is invalid.
 	}
 	
 	/*
@@ -147,6 +148,7 @@ CellPosition CellPosition::GetCellPositionFromNum(int cellNum)
 	// this is a static function (do NOT need a calling object so CANNOT use the data members of the calling object, vCell&hCell)
 	// This function needs to be implemented
 	CellPosition position;
+	
 	if (cellNum > 44) {
 		position.SetVCell(0);
 		position.SetHCell(cellNum - 45);
@@ -163,9 +165,13 @@ CellPosition CellPosition::GetCellPositionFromNum(int cellNum)
 		position.SetVCell(3);
 		position.SetHCell(cellNum - 12);
 	}
-	else {
+	else if (cellNum > 0 && cellNum < 12) {
 		position.SetVCell(4);
 		position.SetHCell(cellNum - 1);
+	}
+	else {
+		position.SetVCell(-1);
+		position.SetHCell(-1);
 	}
 	/// TODO: Implement this function as described in the .h file
 
