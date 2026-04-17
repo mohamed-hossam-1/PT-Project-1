@@ -120,7 +120,7 @@ public:
 	// TODO: Complete the implementation of the following function
 	// Change the passed cell to make it appears a Water Pit as specified in the document
 	void DrawWaterPit(const CellPosition& cellPos) const;
-
+	void flushMouseQueue();
 
 	~Output();	// A Destructor for any needed deallocations
 };

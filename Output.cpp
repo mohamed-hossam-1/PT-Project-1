@@ -40,7 +40,8 @@ Output::Output()
 	UI.CellColor = BENTENGRAY;
 	UI.CellNumFont = 14;
 	UI.CellNumColor = UI.GridLineColor;
-
+	UI.WaterPitsCellColor = NAVYBLUE;
+	UI.DangerZoneCellColor = RED;
 
 	// Belt Line Width and Color
 	UI.BeltLineWidth = 6;
@@ -659,8 +660,8 @@ void Output::DrawFlag(const CellPosition& cellPos) const
 	// TODO: Draw the flag as a line with a triangle connected to it directed to right
 
 	// TODO: 1. Draw the flag pole (the line)
-	int flagPoleStartX = cellStartX + UI.CellWidth / 2;
-	int flagPoleStartY = cellStartY + UI.ToolBarHeight + UI.CellHeight / 10;
+	int flagPoleStartX = cellStartX-UI.CellWidth/2;
+	int flagPoleStartY = cellStartY + 3*UI.CellHeight/4 ;
 	int flagCenterY = flagPoleStartY -(UI.FlagPoleHeight - UI.FlagWidth / 2);
 	int flagCenterX = flagPoleStartX + UI.FlagHeight / 2;
 
@@ -678,11 +679,11 @@ void Output::DrawRotatingGear(const CellPosition& cellPos, bool clockwise) const
 		//image required
 	if (clockwise == true) {
 		pWind->SetPen(UI.CellColor, 1);
-		DrawImageInCell(cellPos, "images\\Clockwise_Gear.jpg", UI.CellWidth, UI.CellHeight);//requires the cw version of the image
+		DrawImageInCell(cellPos, "images\\Clockwise_Gear.jpg", UI.CellWidth/2, UI.CellHeight/2);//requires the cw version of the image
 	}
 	else {
 		pWind->SetPen(UI.CellColor, 1);
-		DrawImageInCell(cellPos, "images\\Counter_Clockwise_Gear.jpg", UI.CellWidth, UI.CellHeight);//requires the ccw version of the image
+		DrawImageInCell(cellPos, "images\\Counter_Clockwise_Gear.jpg", UI.CellWidth/2, UI.CellHeight/2);//requires the ccw version of the image
 	}
 }
 
@@ -693,7 +694,7 @@ void Output::DrawAntenna(const CellPosition& cellPos) const
 		return;
 	// TODO: Draw the antenna image in the cell
 	pWind->SetPen(UI.CellColor, 1);
-	DrawImageInCell(cellPos, "images\\Antenna.jpg", UI.CellWidth, UI.CellHeight);
+	DrawImageInCell(cellPos, "images\\Antenna.jpg", UI.CellWidth/2, UI.CellHeight/2);
 	
 	
 }
@@ -706,7 +707,7 @@ void Output::DrawWorkshop(const CellPosition& cellPos) const
 	if (!cellPos.IsValidCell())
 		return;
 	// TODO: Draw the workshop image in the cell
-	DrawImageInCell(cellPos,"images\\Workshop.jpg", UI.CellWidth, UI.CellHeight);
+	DrawImageInCell(cellPos,"images\\Workshop.jpg", UI.CellWidth/2, UI.CellHeight/2);
 
 
 }
@@ -714,11 +715,44 @@ void Output::DrawWorkshop(const CellPosition& cellPos) const
 void Output::DrawDangerZone(const CellPosition& cellPos) const
 {
     ///TODO: Complete the implementation of the following function
-	if (!cellPos.IsValidCell())
+	/*if (!cellPos.IsValidCell())
 		return;
 
 	pWind->SetPen(UI.CellColor, 1);
-	DrawImageInCell(cellPos, "images\\Danger_Zone.jpg", UI.CellWidth, UI.CellHeight);
+	DrawImageInCell(cellPos, "images\\Danger_Zone.jpg", UI.CellWidth/2, UI.CellHeight/2);
+	*/
+	if (!cellPos.IsValidCell())
+		return;
+	int ix = GetCellStartX(cellPos);
+	int iy = GetCellStartY(cellPos);
+	int ix2 = ix + UI.CellWidth;
+	int iy2 = iy + UI.CellHeight;
+	pWind->SetPen(UI.CellColor, 1);
+	pWind->SetBrush(UI.DangerZoneCellColor);
+	pWind->DrawRectangle(ix, iy, ix2, iy2, FILLED);
+	int cp = cellPos.GetCellNum();
+	int w = 0, h = 0;
+	pWind->SetPen(UI.GridLineColor, 1);
+	pWind->DrawRectangle(ix, iy, ix2, iy2, FRAME);
+	pWind->SetPen(UI.CellNumColor);
+	pWind->SetFont(UI.CellNumFont, BOLD, BY_NAME, "Verdana");
+
+	///TODO: Get the Width and Height of the Cell Number if written using the current font 
+	//       (Use GetIntegerSize() window function) and set the "w" and "h" variables with its width and height
+
+	pWind->GetIntegerSize(w, h, cp);
+
+
+	// Calculate X & Y coordinate of the start point of writing the card number (upper left point of the cell num)
+	int x = ix + (UI.CellWidth - w - 1);   // space 1 from the end of the cell width
+	// ( - w ) because x is for the start point of cell num (num's left corner)
+	int y = iy + (UI.CellHeight - h - 1);  // space 1 from the end of the cell height
+	// ( - w ) because y is for the start point of cell num (num's upper corner)
+
+///TODO: Draw the cell number in the x and y location
+
+	pWind->DrawInteger(x, y, cp);
+
 }
 
 void Output::DrawWaterPit(const CellPosition& cellPos) const
@@ -726,12 +760,42 @@ void Output::DrawWaterPit(const CellPosition& cellPos) const
 	///TODO: Complete the implementation of the following function
 	if (!cellPos.IsValidCell())
 		return;
+	int ix = GetCellStartX(cellPos);
+	int iy = GetCellStartY(cellPos);
+	int ix2 = ix + UI.CellWidth;
+	int iy2 = iy + UI.CellHeight;
 	pWind->SetPen(UI.CellColor, 1);
-	DrawImageInCell(cellPos,"images\\Water_Pit.jpg",UI.CellWidth,UI.CellHeight);
+	pWind->SetBrush(UI.WaterPitsCellColor);
+	pWind->DrawRectangle(ix, iy, ix2, iy2, FILLED);
+	int cp = cellPos.GetCellNum();
+	int w = 0, h = 0;
+	pWind->SetPen(UI.GridLineColor, 1);
+	pWind->DrawRectangle(ix, iy, ix2, iy2, FRAME);
+	pWind->SetPen(UI.CellNumColor);
+	pWind->SetFont(UI.CellNumFont, BOLD, BY_NAME, "Verdana");
+
+	///TODO: Get the Width and Height of the Cell Number if written using the current font 
+	//       (Use GetIntegerSize() window function) and set the "w" and "h" variables with its width and height
+
+	pWind->GetIntegerSize(w, h, cp);
+
+
+	// Calculate X & Y coordinate of the start point of writing the card number (upper left point of the cell num)
+	int x = ix + (UI.CellWidth - w - 1);   // space 1 from the end of the cell width
+	// ( - w ) because x is for the start point of cell num (num's left corner)
+	int y = iy + (UI.CellHeight - h - 1);  // space 1 from the end of the cell height
+	// ( - w ) because y is for the start point of cell num (num's upper corner)
+
+///TODO: Draw the cell number in the x and y location
+
+	pWind->DrawInteger(x, y, cp);
+
 	//needs the image to be inside te cell not outside it - done by kelany
 }
 
-
+void Output::flushMouseQueue() {
+	pWind->FlushMouseQueue();
+}
 
 Output::~Output()
 {
