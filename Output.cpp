@@ -17,8 +17,8 @@ Output::Output()
 	UI.ToolBarHeight = 65;
 	UI.MenuItemWidth = 65;
 
-	UI.width = 1210; // make it divisible by NumHorizontalCells
-	UI.height = 627; 
+	UI.width = 1.2*1210; // make it divisible by NumHorizontalCells
+	UI.height = 1.2*627; 
 	UI.wx = 5;
 	UI.wy = 5;
 
@@ -52,17 +52,17 @@ Output::Output()
 	UI.BeltYOffset = (UI.CellHeight / 4) * 3;
 
 	// Flag and Flag Pole Colors
-	UI.FlagPoleWidth = 100;
+	UI.FlagPoleWidth = 20;
 	UI.FlagPoleHeight = UI.CellHeight / 2;
 	UI.FlagWidth = UI.CellWidth / 4;
 	UI.FlagHeight = UI.FlagPoleHeight / 2;
 
-	UI.FlagColor = BENTENGOLD;
+	UI.FlagColor = CYAN;
 	UI.FlagPoleColor = BENTENLIME;
 
 
 	// Commands X and Y Coordinates
-	UI.SpaceBetweenCommandsSlots = 10;
+	UI.SpaceBetweenCommandsSlots = 8;
 	UI.AvailableCommandsXOffset = ( UI.CommandItemWidth + UI.SpaceBetweenCommandsSlots ) * 6;
 
 
@@ -298,16 +298,13 @@ void Output::CreateDesignModeToolBar() const
 	MenuItemImages[ITM_ADD_DANGER_ZONE] = "images\\Add_Danger_Zone.jpg";
 	MenuItemImages[ITM_ADD_WORKSHOP] = "images\\Add_Workshop.jpg";
 	MenuItemImages[ITM_ADD_ROTATING_GEAR] = "images\\Add_Gear.jpg";
+	MenuItemImages[ITM_COPY_OBJECT] = "images\\Copy_Object.jpg";
+	MenuItemImages[ITM_CUT_OBJECT] = "images\\Cut_Object.jpg";
+	MenuItemImages[ITM_PASTE_OBJECT] = "images\\Paste_Object.jpg";
+	MenuItemImages[ITM_DELETE_OBJECT] = "images\\Delete_Object.jpg";
+	MenuItemImages[ITM_SAVE_GRID] = "images\\Save_Grid.jpg";
+	MenuItemImages[ITM_LOAD_GRID] = "images\\Load_Grid.jpg";
 	
-	
-	/*
-	MenuItemImages[ITM_COPY_OBJECT] = "images\\";
-	MenuItemImages[ITM_CUT_OBJECT] = "images\\";
-	MenuItemImages[ITM_PASTE_OBJECT] = "images\\";
-	MenuItemImages[ITM_DELETE_OBJECT] = "images\\";
-	MenuItemImages[ITM_SAVE_GRID] = "images\\";
-	MenuItemImages[ITM_LOAD_GRID] = "images\\";
-	*/
 	///TODO: Prepare images for each menu item and add it to the list
 	MenuItemImages[ITM_EXIT] = "images\\Menu_Exit.jpg";
 
@@ -340,11 +337,10 @@ void Output::CreatePlayModeToolBar() const
 	MenuItemImages[ITM_SWITCH_TO_DESIGN_MODE] = "images\\Menu_SwitchToGrid.jpg";
 
 	///TODO: Change the path of the images as needed
-	MenuItemImages[ITM_EXECUTE_COMMANDS] = "images\\Menu_Dice.jpg";
-	MenuItemImages[ITM_SELECT_COMMAND] = "images\\Menu_Dice.jpg";
-	/*MenuItemImages[ITM_NEW_GAME] = "images\\";
-	MenuItemImages[ITM_SWITCH_TO_DESIGN_MODE] = "images\\";
-	MenuItemImages[ITM_REBOOT_REPAIR] = "images\\";*/
+	MenuItemImages[ITM_EXECUTE_COMMANDS] = "images\\Execute_Commands.jpg";
+	MenuItemImages[ITM_SELECT_COMMAND] = "images\\Select_Commands.jpg";
+	MenuItemImages[ITM_NEW_GAME] = "images\\New_Game.jpg";
+	MenuItemImages[ITM_REBOOT_REPAIR] = "images\\Reboot_Repair.jpg";
 
 
 	///TODO: Prepare images for each menu item and add it to the list
